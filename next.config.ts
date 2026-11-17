@@ -1,12 +1,21 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
   experimental: {
     agentFeedback: true,
   },
   cacheComponents: true,
   partialPrefetching: true,
+  images: {
+    // Photos d'illustration hébergées sur Pexels (à remplacer par les vraies photos dans /public).
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "images.pexels.com",
+        pathname: "/photos/**",
+      },
+    ],
+  },
   turbopack: {
     rules: {
       "*.css": {
