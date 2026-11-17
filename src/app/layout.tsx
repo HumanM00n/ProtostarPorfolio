@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     default: `${identity.brand} — Pilote de karting · Partenariats ${year}`,
     template: `%s · ${identity.brand}`,
   },
-  description: `${identity.pilotName}, pilote de karting en ${identity.category}. Palmarès, saison ${year} et formules de partenariat pour associer votre marque à une trajectoire sportive authentique.`,
+  description: `${identity.pilotName}, pilote de karting. Palmarès, saison ${year} et formules de partenariat pour associer votre marque à une trajectoire sportive authentique.`,
   openGraph: {
     type: "website",
     locale: "fr_FR",
@@ -40,7 +40,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           Aller au contenu
         </a>
         <div id="top" />
-        <Nav brand={identity.brand} number={identity.number} />
+        <Nav brand={identity.brand} support={site.support} />
         <main id="contenu">{children}</main>
         <Footer />
       </body>

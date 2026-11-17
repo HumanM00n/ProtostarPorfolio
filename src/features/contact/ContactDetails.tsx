@@ -1,11 +1,10 @@
-import Link from "next/link";
 import { site } from "@/data/site";
 import { telHref } from "@/lib/mailto";
-import { ArrowUpRight, Clock, Lightning, Mail, MapPin, Phone, SocialIcon } from "@/components/ui/icons";
+import { ArrowUpRight, Clock, Lightning, Mail, MapPin, Phone } from "@/components/ui/icons";
 import { CopyEmailButton } from "./CopyEmailButton";
 
 export function ContactDetails() {
-  const { contact, socials, identity } = site;
+  const { contact, identity } = site;
 
   return (
     <div className="space-y-5">
@@ -63,7 +62,7 @@ export function ContactDetails() {
         </div>
       </div>
 
-      <div>
+      {/* <div>
         <div className="label-mono mb-2 text-[8px] text-paper/35">Suivre la saison</div>
         {socials.map((social) => (
           <a
@@ -83,15 +82,7 @@ export function ContactDetails() {
             </span>
           </a>
         ))}
-      </div>
-
-      <Link
-        href="/dossier"
-        className="label-mono flex w-full items-center justify-between border border-paper/15 px-4 py-3.5 text-[10px] text-paper/65 transition-colors hover:border-volt hover:text-volt"
-      >
-        Dossier de partenariat · PDF
-        <ArrowUpRight className="h-4 w-4" />
-      </Link>
+      </div> */}
     </div>
   );
 }

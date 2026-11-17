@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { site } from "@/data/site";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { Reveal } from "@/components/ui/Reveal";
@@ -19,9 +18,6 @@ export default function EnPistePage() {
     <section className="section-paper relative overflow-hidden py-20 md:py-28">
       <div className="wrap">
         <PageHeader
-          index="03"
-          eyebrow="En piste"
-          tone="dark"
           title={
             <>
               Le paddock,
@@ -40,7 +36,7 @@ export default function EnPistePage() {
                   href={instagram.url}
                   target="_blank"
                   rel="noreferrer"
-                  className="label-mono mt-4 inline-flex items-center gap-2 border-b border-ink/20 pb-1 text-[10px] text-ink transition-colors hover:border-volt hover:text-ink/60"
+                  className="label-mono mt-4 urlinline-flex items-center gap-2 border-b border-ink/20 pb-1 text-[10px] text-ink transition-colors hover:border-volt hover:text-ink/60"
                 >
                   <Instagram className="h-3.5 w-3.5" />
                   {instagram.handle}
@@ -67,13 +63,6 @@ export default function EnPistePage() {
                 <div className="label-mono text-[9px] text-volt">Le récit d&apos;une saison</div>
                 <p className="mt-3 max-w-xl text-xl font-medium leading-snug md:text-[28px]">{site.deck.objectives}</p>
               </div>
-              <Link
-                href="/contact"
-                className="label-mono inline-flex shrink-0 items-center gap-2 border border-paper/25 px-4 py-3 text-[10px] text-paper transition-colors hover:border-volt hover:text-volt"
-              >
-                Rejoindre l&apos;aventure
-                <ArrowUpRight className="h-4 w-4" />
-              </Link>
             </div>
           </div>
         </Reveal>

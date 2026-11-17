@@ -25,8 +25,6 @@ export default function ContactPage() {
       />
       <div className="wrap relative">
         <PageHeader
-          index="05"
-          eyebrow={contact.kicker}
           title={
             <>
               {contact.titleA}

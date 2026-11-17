@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { site } from "@/data/site";
 import { SmartImage } from "@/components/ui/SmartImage";
-import { ArrowDown, ArrowUpRight, Headphones, Lightning, SpinnerMark } from "@/components/ui/icons";
+import { ArrowUpRight, Headphones, Lightning, SpinnerMark } from "@/components/ui/icons";
 
 export function Hero() {
   const { identity, stats, calendar } = site;
@@ -37,23 +37,6 @@ export function Hero() {
       />
 
       <div className="wrap relative z-10 pb-10 pt-6 md:pb-14 md:pt-8">
-        <div className="flex flex-wrap items-center justify-between gap-4 border-b border-paper/10 pb-5">
-          <div className="label-mono flex items-center gap-2.5 text-volt">
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-volt opacity-60" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-volt" />
-            </span>
-            {identity.season} — En piste
-          </div>
-          <div className="label-mono hidden items-center gap-6 text-[9px] text-paper/35 md:flex">
-            <span>IAME Series France</span>
-            <span className="h-3 w-px bg-paper/20" />
-            <span>45.76° N / 4.83° E</span>
-            <span className="h-3 w-px bg-paper/20" />
-            <span className="text-paper/60">#{identity.number}</span>
-          </div>
-        </div>
-
         <div className="grid gap-12 pt-9 lg:grid-cols-12 lg:gap-10 lg:pt-12">
           <div className="lg:col-span-7">
             <div className="label-mono flex items-center gap-2 text-paper/55">
@@ -82,13 +65,6 @@ export function Hero() {
               >
                 Devenir partenaire
                 <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </Link>
-              <Link
-                href="/dossier"
-                className="group inline-flex items-center gap-3 border border-paper/25 px-5 py-3.5 font-mono text-[11px] font-medium uppercase tracking-[0.15em] text-paper transition-colors duration-300 hover:border-volt hover:text-volt"
-              >
-                Le dossier 2026
-                <ArrowDown className="h-4 w-4 transition-transform duration-300 group-hover:translate-y-0.5" />
               </Link>
             </div>
 
@@ -124,7 +100,7 @@ export function Hero() {
                 <div className="absolute left-4 top-4 flex items-center gap-2 border border-paper/20 bg-ink/55 px-2.5 py-1.5 backdrop-blur">
                   <span className="h-1.5 w-1.5 rounded-full bg-volt" />
                   <span className="label-mono text-[8px] text-paper/80">
-                    {identity.category} · #{identity.number}
+                    {identity.role} · #{identity.number}
                   </span>
                 </div>
 

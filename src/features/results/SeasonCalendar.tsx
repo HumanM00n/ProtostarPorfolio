@@ -1,6 +1,5 @@
 import type { CalendarItem } from "@/data/types";
 import { cn } from "@/lib/cn";
-import { Button } from "@/components/ui/Button";
 import { CalendarDays } from "@/components/ui/icons";
 
 export function SeasonCalendar({ season, races }: { season: string; races: CalendarItem[] }) {
@@ -37,10 +36,6 @@ export function SeasonCalendar({ season, races }: { season: string; races: Calen
           <span className="text-[11px] text-paper/55">national IAME</span>
         </div>
       </div>
-      <Button href="/dossier" variant="outline" className="mt-4 w-full justify-between px-4 py-3" icon={false}>
-        Dossier de partenariat
-        <span aria-hidden="true">↗</span>
-      </Button>
     </div>
   );
 }

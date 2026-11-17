@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { site } from "@/data/site";
-import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Reveal } from "@/components/ui/Reveal";
 import { SmartImage } from "@/components/ui/SmartImage";
 import { Lightning } from "@/components/ui/icons";
@@ -18,10 +17,7 @@ export function PilotProfile() {
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-5">
             <Reveal>
-              <Eyebrow index="01" tone="dark">
-                {bio.kicker}
-              </Eyebrow>
-              <h1 className="mt-6 max-w-lg font-display text-[clamp(2.7rem,5.4vw,4.6rem)] uppercase leading-[0.92]">
+              <h1 className="max-w-lg font-display text-[clamp(2.7rem,5.4vw,4.6rem)] uppercase leading-[0.92]">
                 {bio.heading}
               </h1>
             </Reveal>
@@ -71,7 +67,7 @@ export function PilotProfile() {
                   <div className="mt-2 font-display text-4xl leading-none">P4</div>
                   <div className="mt-1 text-[11px] font-medium text-ink/70">IAME Series France</div>
                   <div className="mt-2 border-t border-ink/15 pt-2 text-[10px] leading-snug text-ink/45">
-                    Classement général X30 Senior 2025
+                    Classement général 2025
                   </div>
                 </div>
               </div>

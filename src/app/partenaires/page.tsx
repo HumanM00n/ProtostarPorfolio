@@ -21,9 +21,6 @@ export default function PartenairesPage() {
       />
       <div className="wrap relative">
         <PageHeader
-          index="04"
-          eyebrow="Partenariat"
-          tone="dark"
           title={
             <>
               Votre marque.
@@ -40,10 +37,7 @@ export default function PartenairesPage() {
               </p>
               <div className="mt-5 flex flex-wrap gap-3">
                 <Button href="/dossier" variant="dark" className="px-4 py-3">
-                  Voir le dossier
-                </Button>
-                <Button href="/contact" variant="ghost" className="px-4 py-3">
-                  En parler
+                  Télécharger le dossier
                 </Button>
               </div>
             </>

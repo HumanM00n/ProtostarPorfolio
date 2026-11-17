@@ -21,13 +21,6 @@ export function DeckDocument() {
             Document confidentiel · usage partenariat
           </span>
           <div className="flex items-center gap-2">
-            <a
-              href={`mailto:${contact.email}`}
-              className="label-mono hidden items-center gap-1.5 border border-paper/20 px-3 py-1.5 text-[8px] text-paper/70 transition-colors hover:border-volt hover:text-volt sm:inline-flex"
-            >
-              <Mail className="h-3 w-3" />
-              Écrire
-            </a>
             <PrintButton className="label-mono flex items-center gap-1.5 bg-volt px-3 py-1.5 text-[8px] text-paper">
               Imprimer / PDF
             </PrintButton>
@@ -53,10 +46,6 @@ export function DeckDocument() {
           </h1>
           <p className="mt-5 max-w-xl text-[13px] leading-relaxed text-ink/60">{deck.intro}</p>
           <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2 font-mono text-[9px] uppercase tracking-[0.1em] text-ink/45">
-            <span className="flex items-center gap-1.5">
-              <Lightning filled className="h-2.5 w-2.5 text-ink" />
-              {identity.category}
-            </span>
             <span>#{identity.number}</span>
             <span>{identity.location}</span>
             <span>{identity.license}</span>
@@ -136,7 +125,7 @@ export function DeckDocument() {
                   <span className="w-9 shrink-0 font-display text-lg leading-none text-ink/30">{item.year}</span>
                   <div className="min-w-0 flex-1">
                     <div className="text-[11.5px] font-semibold leading-snug">{item.competition}</div>
-                    <div className="text-[9.5px] text-ink/40">{item.category}</div>
+                    {item.category && <div className="text-[9.5px] text-ink/40">{item.category}</div>}
                   </div>
                   <span className="max-w-[105px] text-right font-mono text-[8.5px] leading-tight text-ink/65">
                     {item.result}
@@ -233,9 +222,6 @@ export function DeckDocument() {
                   Discuter du partenariat
                   <ArrowUpRight className="h-3 w-3" />
                 </a>
-                <PrintButton className="label-mono inline-flex items-center gap-2 border border-ink/25 px-4 py-2.5 text-[8px] text-ink transition-colors hover:border-ink">
-                  Enregistrer en PDF
-                </PrintButton>
               </div>
             </div>
             <div className="space-y-1.5 border-t border-ink/15 pt-4 text-[10px] md:border-l md:border-t-0 md:pl-6 md:pt-0">

@@ -21,8 +21,6 @@ export default function PalmaresPage() {
       />
       <div className="wrap relative">
         <PageHeader
-          index="02"
-          eyebrow="Palmarès"
           title={
             <>
               Les résultats

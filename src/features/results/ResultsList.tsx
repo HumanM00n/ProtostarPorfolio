@@ -1,10 +1,9 @@
 "use client";
 
-import Link from "next/link";
 import { useState } from "react";
 import type { PalmaresItem } from "@/data/types";
 import { cn } from "@/lib/cn";
-import { ArrowUpRight, Lightning } from "@/components/ui/icons";
+import { Lightning } from "@/components/ui/icons";
 
 const ALL = "Tous";
 
@@ -49,7 +48,7 @@ export function ResultsList({ items }: { items: PalmaresItem[] }) {
                 {item.competition}
                 {item.highlight && <Lightning filled className="h-3 w-3 text-volt" />}
               </div>
-              <div className="label-mono mt-1 text-[9px] text-paper/35">{item.category}</div>
+              {item.category && <div className="label-mono mt-1 text-[9px] text-paper/35">{item.category}</div>}
               <div className="mt-2 font-mono text-[10px] uppercase tracking-[0.08em] text-volt md:hidden">{item.result}</div>
             </div>
             <span className="hidden justify-self-end border border-paper/15 px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.08em] text-paper/70 transition-colors group-hover:border-volt/50 group-hover:text-volt md:inline-flex">
@@ -61,13 +60,6 @@ export function ResultsList({ items }: { items: PalmaresItem[] }) {
 
       <div className="mt-5 flex flex-wrap items-center justify-between gap-3">
         <p className="text-[11px] text-paper/35">Classements officiels FFSA · IAME Series France</p>
-        <Link
-          href="/dossier"
-          className="label-mono inline-flex items-center gap-2 text-[10px] text-volt transition-opacity hover:opacity-70"
-        >
-          Voir le dossier complet
-          <ArrowUpRight className="h-3.5 w-3.5" />
-        </Link>
       </div>
     </>
   );

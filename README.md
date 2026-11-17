@@ -45,7 +45,7 @@ src/
 │   └── globals.css       # Thème Tailwind (couleurs, effets, styles d'impression)
 ├── components/
 │   ├── layout/           # Nav (client), Footer
-│   └── ui/               # Briques réutilisables : Button, Eyebrow, PageHeader, Reveal, SmartImage, icons
+│   └── ui/               # Briques réutilisables : Button, PageHeader, Reveal, SmartImage, icons
 ├── features/             # Sections métier, regroupées par page
 │   └── home/ pilot/ results/ gallery/ partners/ contact/ deck/
 ├── data/
