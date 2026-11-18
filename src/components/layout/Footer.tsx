@@ -56,7 +56,7 @@ export function Footer() {
                   key={social.id}
                   href={social.url}
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   className="group flex items-center justify-between border-b border-paper/10 py-2.5 text-[12.5px] text-paper/65 transition-colors hover:text-volt"
                 >
                   <span className="flex items-center gap-2.5">
@@ -89,7 +89,7 @@ export function Footer() {
               <a
                 href={instagram.url}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="label-mono flex items-center gap-1.5 text-[8px] text-paper/35 transition-colors hover:text-volt"
               >
                 <SocialIcon label="instagram" className="h-3 w-3" />

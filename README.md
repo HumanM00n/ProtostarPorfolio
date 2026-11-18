@@ -18,6 +18,28 @@ npm run lint
 2. Ouvrir une PR → la CI lance lint + build puis publie une URL de preview Vercel.
 3. Merge sur `main` → déploiement en production.
 
+## Formulaire de contact
+
+Envoi par une Server Action (`src/features/contact/actions.ts`) via [Resend](https://resend.com).
+Protections, dans l'ordre :
+
+1. **Honeypot** : champ invisible ; s'il est rempli, faux succès et rien n'est envoyé.
+2. **Délai minimum** : envoi refusé moins de 3 s après l'affichage du formulaire.
+3. **Validation serveur** : longueurs max, format e-mail, formule connue, pas de retour à la ligne dans les champs courts.
+4. **Rate limit** ([Upstash Redis](https://upstash.com)) : 3 messages / 10 min et 10 / 24 h par IP (hachée), 100 / 24 h au total.
+5. **Cloudflare Turnstile** : vérification anti-bot, souvent invisible.
+
+Variables d'environnement : voir `.env.example`. À déclarer dans Vercel → Project → Settings →
+Environment Variables (Production **et** Preview). Sans elles en dev local, l'e-mail s'affiche
+dans la console et le rate limit est en mémoire.
+
+## Sécurité
+
+- En-têtes HTTP (CSP, `X-Frame-Options`, `nosniff`, `Referrer-Policy`, `Permissions-Policy`, COOP) dans `next.config.ts`.
+  Nouveau domaine externe (images, scripts, iframe) → l'ajouter à la CSP.
+- `npm audit` (dépendances de prod, niveau `high`) dans la CI.
+- Dependabot (`.github/dependabot.yml`) : PR hebdo pour npm, mensuelle pour les actions GitHub.
+
 ## Déploiement (GitHub Actions → Vercel)
 
 Pipeline : `.github/workflows/ci-cd.yml`

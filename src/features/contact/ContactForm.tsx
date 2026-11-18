@@ -1,16 +1,28 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { startTransition, useActionState, useEffect, useRef, useState, type FormEvent } from "react";
 import type { Tier } from "@/data/types";
 import { buildPartnershipMailto } from "@/lib/mailto";
 import { ArrowUpRight, Check } from "@/components/ui/icons";
+import { sendContactMessage } from "./actions";
+import {
+  CONTACT_LIMITS,
+  HONEYPOT_FIELD,
+  STARTED_AT_FIELD,
+  initialContactState,
+  type ContactField,
+  type ContactState,
+} from "./contact-state";
+import { Turnstile } from "./Turnstile";
 
 type Fields = { name: string; structure: string; email: string; tier: string; message: string };
 
+const emptyFields = (tier = ""): Fields => ({ name: "", structure: "", email: "", tier, message: "" });
+const turnstileSiteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
+
 /**
- * Formulaire sans serveur : il rédige un e-mail pré-rempli (mailto:) que le visiteur
- * envoie depuis sa messagerie. Aucune donnée n'est stockée.
- * Pour passer à un vrai envoi plus tard : remplacer handleSubmit par une Server Action.
+ * Formulaire de contact envoyé par une Server Action (voir actions.ts).
+ * Protections : honeypot, délai minimum, Cloudflare Turnstile, validation et rate limit côté serveur.
  */
 export function ContactForm({
   to,
@@ -23,65 +35,64 @@ export function ContactForm({
   responseTime: string;
   initialTier?: string;
 }) {
-  const [fields, setFields] = useState<Fields>({
-    name: "",
-    structure: "",
-    email: "",
-    tier: initialTier,
-    message: "",
-  });
-  const [sent, setSent] = useState(false);
+  const [fields, setFields] = useState<Fields>(() => emptyFields(initialTier));
+  const [state, formAction, pending] = useActionState(sendContactMessage, initialContactState);
+  const [dismissed, setDismissed] = useState<ContactState | null>(null);
+  const [attempt, setAttempt] = useState(0);
+  const startedAt = useRef(0);
+
+  useEffect(() => {
+    startedAt.current = Date.now();
+  }, []);
 
   const set = (key: keyof Fields) => (value: string) => setFields((previous) => ({ ...previous, [key]: value }));
-  const mailto = buildPartnershipMailto({ to, ...fields });
+  const fieldError = (key: ContactField) => (state.status === "error" ? state.fieldErrors?.[key] : undefined);
 
-  const handleSubmit = (event: FormEvent) => {
+  // Envoi intercepté pour garder les champs remplis en cas d'erreur (pas de reset automatique).
+  // Sans JavaScript (ou avant hydratation), `action` envoie quand même en POST à la Server Action :
+  // les données ne passent jamais dans l'URL.
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setSent(true);
+    const formData = new FormData(event.currentTarget);
+    formData.set(STARTED_AT_FIELD, String(startedAt.current));
+    startTransition(() => formAction(formData));
+    // Nouveau widget Turnstile pour la prochaine tentative (un jeton = un envoi).
+    setAttempt((count) => count + 1);
   };
 
-  if (sent) {
+  if (state.status === "success" && state !== dismissed) {
     return (
       <div className="flex min-h-[430px] flex-col items-start justify-center">
         <div className="flex h-12 w-12 items-center justify-center bg-volt text-ink">
           <Check className="h-6 w-6" />
         </div>
-        <div className="label-mono mt-5 text-[9px] text-volt">Message prêt à partir</div>
+        <div className="label-mono mt-5 text-[9px] text-volt">Message envoyé</div>
         <h2 className="mt-2 font-display text-3xl uppercase leading-none md:text-4xl">
           Merci{fields.name ? `, ${fields.name.split(" ")[0]}` : ""}.
         </h2>
         <p className="mt-4 max-w-md text-sm leading-relaxed text-paper/55">
-          Votre message est rédigé. Il ne reste plus qu&apos;à l&apos;envoyer depuis votre messagerie. Aucune donnée
-          n&apos;est enregistrée sur ce site.
+          Votre message m&apos;a bien été transmis. Je vous réponds personnellement à l&apos;adresse indiquée (
+          {responseTime.toLowerCase()}).
         </p>
-        <div className="mt-6 flex flex-wrap gap-3">
-          <a
-            href={mailto}
-            className="group inline-flex items-center gap-3 bg-volt px-5 py-3.5 font-mono text-[11px] uppercase tracking-[0.15em] text-paper transition-colors hover:bg-paper hover:text-ink"
-          >
-            Ouvrir l&apos;email
-            <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-          </a>
+        <div className="mt-6">
           <button
             type="button"
-            onClick={() => setSent(false)}
+            onClick={() => {
+              setDismissed(state);
+              setFields(emptyFields());
+              startedAt.current = Date.now();
+            }}
             className="label-mono border border-paper/20 px-4 py-3 text-[10px] text-paper/65 transition-colors hover:border-volt hover:text-volt"
           >
-            Modifier le message
+            Envoyer un autre message
           </button>
         </div>
-        <p className="mt-5 text-[11px] text-paper/35">
-          Pas de messagerie configurée ? Écrivez à{" "}
-          <a href={`mailto:${to}`} className="text-paper/70 underline decoration-volt/60 underline-offset-4">
-            {to}
-          </a>
-        </p>
       </div>
     );
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form action={formAction} onSubmit={handleSubmit} className="relative space-y-4">
       <div className="mb-5 flex items-center justify-between gap-3 border-b border-paper/10 pb-4">
         <span className="label-mono text-[9px] text-paper/55">Parler du projet</span>
         <span className="label-mono flex items-center gap-1.5 text-[8px] text-volt">
@@ -90,27 +101,43 @@ export function ContactForm({
         </span>
       </div>
 
+      {/* Honeypot : invisible pour les humains, rempli par les robots. */}
+      <div aria-hidden="true" className="absolute -left-[10000px] h-px w-px overflow-hidden">
+        <label>
+          Ne pas remplir
+          <input type="text" name={HONEYPOT_FIELD} tabIndex={-1} autoComplete="off" defaultValue="" />
+        </label>
+      </div>
+
       <div className="grid gap-4 sm:grid-cols-2">
         <label className="block">
           <span className="label-mono mb-2 block text-[8px] text-paper/45">Votre nom *</span>
           <input
             className="input-dark"
+            name="name"
             required
+            maxLength={CONTACT_LIMITS.name}
             value={fields.name}
             onChange={(e) => set("name")(e.target.value)}
             placeholder="Prénom et nom"
             autoComplete="name"
+            aria-invalid={Boolean(fieldError("name"))}
           />
+          <FieldError message={fieldError("name")} />
         </label>
         <label className="block">
           <span className="label-mono mb-2 block text-[8px] text-paper/45">Votre structure</span>
           <input
             className="input-dark"
+            name="structure"
+            maxLength={CONTACT_LIMITS.structure}
             value={fields.structure}
             onChange={(e) => set("structure")(e.target.value)}
             placeholder="Entreprise, marque…"
             autoComplete="organization"
+            aria-invalid={Boolean(fieldError("structure"))}
           />
+          <FieldError message={fieldError("structure")} />
         </label>
       </div>
 
@@ -120,17 +147,22 @@ export function ContactForm({
           <input
             className="input-dark"
             type="email"
+            name="email"
             required
+            maxLength={CONTACT_LIMITS.email}
             value={fields.email}
             onChange={(e) => set("email")(e.target.value)}
             placeholder="vous@entreprise.fr"
             autoComplete="email"
+            aria-invalid={Boolean(fieldError("email"))}
           />
+          <FieldError message={fieldError("email")} />
         </label>
         <label className="block">
           <span className="label-mono mb-2 block text-[8px] text-paper/45">Formule envisagée</span>
           <select
             className="input-dark appearance-none bg-carbon"
+            name="tier"
             value={fields.tier}
             onChange={(e) => set("tier")(e.target.value)}
           >
@@ -142,6 +174,7 @@ export function ContactForm({
             ))}
             <option value="Sur mesure">Sur mesure</option>
           </select>
+          <FieldError message={fieldError("tier")} />
         </label>
       </div>
 
@@ -149,22 +182,50 @@ export function ContactForm({
         <span className="label-mono mb-2 block text-[8px] text-paper/45">Votre message *</span>
         <textarea
           className="input-dark min-h-[130px] resize-y"
+          name="message"
           required
+          minLength={CONTACT_LIMITS.message.min}
+          maxLength={CONTACT_LIMITS.message.max}
           value={fields.message}
           onChange={(e) => set("message")(e.target.value)}
           placeholder="Parlez-moi de votre marque, de vos objectifs et de ce que vous aimeriez mettre en place."
+          aria-invalid={Boolean(fieldError("message"))}
         />
+        <FieldError message={fieldError("message")} />
       </label>
 
-      <div className="flex justify-end pt-1">
+      {turnstileSiteKey ? <Turnstile key={attempt} siteKey={turnstileSiteKey} /> : null}
+
+      {state.status === "error" ? (
+        <div role="alert" className="border border-volt/40 bg-volt/10 px-4 py-3 text-sm text-paper/80">
+          {state.message}{" "}
+          <a
+            href={buildPartnershipMailto({ to, ...fields })}
+            className="text-paper underline decoration-volt/60 underline-offset-4"
+          >
+            Ou écrivez-moi depuis votre messagerie.
+          </a>
+        </div>
+      ) : null}
+
+      <div className="flex flex-wrap items-center justify-between gap-4 pt-1">
+        <p className="max-w-xs text-[11px] leading-relaxed text-paper/35">
+          Vos informations servent uniquement à vous répondre et ne sont pas conservées sur ce site.
+        </p>
         <button
           type="submit"
-          className="group inline-flex shrink-0 items-center justify-center gap-3 bg-volt px-5 py-3.5 font-mono text-[11px] uppercase tracking-[0.15em] text-paper transition-colors hover:bg-paper hover:text-ink"
+          disabled={pending}
+          className="group inline-flex shrink-0 items-center justify-center gap-3 bg-volt px-5 py-3.5 font-mono text-[11px] uppercase tracking-[0.15em] text-paper transition-colors hover:bg-paper hover:text-ink disabled:cursor-wait disabled:opacity-60"
         >
-          Rédiger mon message
+          {pending ? "Envoi en cours…" : "Envoyer mon message"}
           <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
         </button>
       </div>
     </form>
   );
+}
+
+function FieldError({ message }: { message?: string }) {
+  if (!message) return null;
+  return <span className="mt-1.5 block text-[11px] text-volt">{message}</span>;
 }
