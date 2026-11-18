@@ -1,14 +1,15 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { navLinks } from "@/data/navigation";
 import { cn } from "@/lib/cn";
 import { Button } from "@/components/ui/Button";
-import { ArrowUpRight, Close, Lightning, Menu } from "@/components/ui/icons";
+import { ArrowUpRight, Close, Menu } from "@/components/ui/icons";
 
-export function Nav({ brand, number }: { brand: string; number: string }) {
+export function Nav({ brand, support }: { brand: string; support: { label: string; url: string } }) {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -41,16 +42,15 @@ export function Nav({ brand, number }: { brand: string; number: string }) {
         )}
       >
         <div className="wrap flex h-[70px] items-center justify-between gap-5 md:h-[82px]">
-          <Link href="/" className="group flex items-center gap-3" aria-label={`${brand} — accueil`}>
-            <span className="flex h-9 w-9 -rotate-3 items-center justify-center bg-volt text-ink transition-transform duration-300 group-hover:rotate-0">
-              <Lightning filled className="h-4 w-4" />
-            </span>
-            <span className="leading-none">
-              <span className="block font-display text-[22px] uppercase tracking-[0.04em] text-paper md:text-[25px]">
-                {brand}
-              </span>
-              <span className="label-mono mt-1 block text-[8px] text-paper/40">Karting · #{number}</span>
-            </span>
+          <Link href="/" className="flex shrink-0 items-center" aria-label={`${brand} — accueil`}>
+            <Image
+              src="/logo-protostar.png"
+              alt={brand}
+              width={640}
+              height={267}
+              priority
+              className="h-11 w-auto md:h-[52px]"
+            />
           </Link>
 
           <nav className="hidden items-center gap-7 lg:flex" aria-label="Navigation principale">
@@ -70,14 +70,16 @@ export function Nav({ brand, number }: { brand: string; number: string }) {
           </nav>
 
           <div className="flex items-center gap-2">
-            <Link
-              href="/dossier"
-              className="label-mono hidden border border-paper/20 px-3.5 py-2.5 text-[10px] text-paper/80 transition-colors hover:border-volt hover:text-volt xl:block"
+            <a
+              href={support.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="label-mono hidden border border-paper/20 px-3.5 py-2.5 text-[10px] text-paper/80 transition-colors hover:border-volt hover:text-volt md:block"
             >
-              Dossier sponsor
-            </Link>
+              {support.label}
+            </a>
             <Button href="/partenaires" className="hidden px-4 py-2.5 text-[10px] sm:inline-flex">
-              Me soutenir
+              Devenir partenaire
             </Button>
             <button
               type="button"
@@ -95,7 +97,7 @@ export function Nav({ brand, number }: { brand: string; number: string }) {
       {mobileOpen && (
         <div className="grain fixed inset-0 z-[80] flex flex-col bg-ink text-paper lg:hidden">
           <div className="wrap flex h-[70px] shrink-0 items-center justify-between border-b border-paper/10">
-            <span className="font-display text-2xl uppercase tracking-[0.04em]">{brand}</span>
+            <Image src="/logo-protostar.png" alt={brand} width={640} height={267} className="h-10 w-auto" />
             <button
               type="button"
               onClick={close}
@@ -133,14 +135,16 @@ export function Nav({ brand, number }: { brand: string; number: string }) {
             <Button href="/partenaires" onClick={close} className="w-full">
               Devenir partenaire
             </Button>
-            <Link
-              href="/dossier"
+            <a
+              href={support.url}
+              target="_blank"
+              rel="noopener noreferrer"
               onClick={close}
               className="label-mono flex w-full items-center justify-center gap-2 border border-paper/20 py-3.5 text-paper/70"
             >
-              Voir le dossier sponsor
+              {support.label}
               <ArrowUpRight className="h-4 w-4" />
-            </Link>
+            </a>
           </div>
         </div>
       )}

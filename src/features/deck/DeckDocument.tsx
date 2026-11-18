@@ -21,13 +21,6 @@ export function DeckDocument() {
             Document confidentiel · usage partenariat
           </span>
           <div className="flex items-center gap-2">
-            <a
-              href={`mailto:${contact.email}`}
-              className="label-mono hidden items-center gap-1.5 border border-paper/20 px-3 py-1.5 text-[8px] text-paper/70 transition-colors hover:border-volt hover:text-volt sm:inline-flex"
-            >
-              <Mail className="h-3 w-3" />
-              Écrire
-            </a>
             <PrintButton className="label-mono flex items-center gap-1.5 bg-volt px-3 py-1.5 text-[8px] text-paper">
               Imprimer / PDF
             </PrintButton>
@@ -46,17 +39,13 @@ export function DeckDocument() {
           </div>
           <h1
             id="deck-title"
-            className="mt-5 max-w-[560px] font-display text-[clamp(2.8rem,6vw,4.6rem)] uppercase leading-[0.88]"
+            className="mt-5 max-w-140 font-display text-[clamp(2.8rem,6vw,4.6rem)] uppercase leading-[0.88]"
           >
             {identity.brand}
             <span className="mt-1 block text-ink/35">Pilote de karting.</span>
           </h1>
           <p className="mt-5 max-w-xl text-[13px] leading-relaxed text-ink/60">{deck.intro}</p>
-          <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2 font-mono text-[9px] uppercase tracking-[0.1em] text-ink/45">
-            <span className="flex items-center gap-1.5">
-              <Lightning filled className="h-2.5 w-2.5 text-ink" />
-              {identity.category}
-            </span>
+          <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2 font-mono text-[9px] uppercase tracking-widest text-ink/45">
             <span>#{identity.number}</span>
             <span>{identity.location}</span>
             <span>{identity.license}</span>
@@ -105,7 +94,7 @@ export function DeckDocument() {
             <SmartImage
               src={identity.portrait}
               alt={`${identity.pilotName}, pilote de karting`}
-              className="aspect-[4/5] w-full bg-ink"
+              className="aspect-4/5 w-full bg-ink"
               imgClassName="grayscale-[20%] contrast-105"
               sizes="(min-width: 768px) 360px, 100vw"
               priority
@@ -136,9 +125,9 @@ export function DeckDocument() {
                   <span className="w-9 shrink-0 font-display text-lg leading-none text-ink/30">{item.year}</span>
                   <div className="min-w-0 flex-1">
                     <div className="text-[11.5px] font-semibold leading-snug">{item.competition}</div>
-                    <div className="text-[9.5px] text-ink/40">{item.category}</div>
+                    {item.category && <div className="text-[9.5px] text-ink/40">{item.category}</div>}
                   </div>
-                  <span className="max-w-[105px] text-right font-mono text-[8.5px] leading-tight text-ink/65">
+                  <span className="max-w-26.25 text-right font-mono text-[8.5px] leading-tight text-ink/65">
                     {item.result}
                   </span>
                 </div>
@@ -192,7 +181,7 @@ export function DeckDocument() {
             {tiers.map((tier) => (
               <div
                 key={tier.id}
-                className={`border p-4 ${tier.featured ? "border-volt bg-volt/[0.06]" : "border-paper/15"}`}
+                className={`border p-4 ${tier.featured ? "border-volt bg-volt/6" : "border-paper/15"}`}
               >
                 <div className="flex items-start justify-between gap-2">
                   <h4 className="font-display text-xl uppercase leading-none">{tier.name}</h4>
@@ -233,9 +222,6 @@ export function DeckDocument() {
                   Discuter du partenariat
                   <ArrowUpRight className="h-3 w-3" />
                 </a>
-                <PrintButton className="label-mono inline-flex items-center gap-2 border border-ink/25 px-4 py-2.5 text-[8px] text-ink transition-colors hover:border-ink">
-                  Enregistrer en PDF
-                </PrintButton>
               </div>
             </div>
             <div className="space-y-1.5 border-t border-ink/15 pt-4 text-[10px] md:border-l md:border-t-0 md:pl-6 md:pt-0">

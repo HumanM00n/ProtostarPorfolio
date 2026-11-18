@@ -15,14 +15,12 @@ export default function PalmaresPage() {
   return (
     <section className="section-dark relative overflow-hidden py-20 md:py-28">
       <div
-        className="pointer-events-none absolute right-0 top-20 h-[520px] w-[520px] translate-x-1/3 rounded-full opacity-70"
+        className="pointer-events-none absolute right-0 top-20 h-130 w-130 translate-x-1/3 rounded-full opacity-70"
         style={{ background: "radial-gradient(circle, rgba(255,30,45,0.09) 0%, transparent 65%)" }}
         aria-hidden="true"
       />
       <div className="wrap relative">
         <PageHeader
-          index="02"
-          eyebrow="Palmarès"
           title={
             <>
               Les résultats

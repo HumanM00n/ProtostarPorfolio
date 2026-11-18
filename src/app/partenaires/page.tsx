@@ -16,14 +16,11 @@ export default function PartenairesPage() {
   return (
     <section className="section-paper relative overflow-hidden py-20 md:py-28">
       <div
-        className="pointer-events-none absolute -left-32 top-40 h-72 w-72 rounded-full border border-ink/[0.05]"
+        className="pointer-events-none absolute -left-32 top-40 h-72 w-72 rounded-full border border-ink/5"
         aria-hidden="true"
       />
       <div className="wrap relative">
         <PageHeader
-          index="04"
-          eyebrow="Partenariat"
-          tone="dark"
           title={
             <>
               Votre marque.
@@ -40,10 +37,7 @@ export default function PartenairesPage() {
               </p>
               <div className="mt-5 flex flex-wrap gap-3">
                 <Button href="/dossier" variant="dark" className="px-4 py-3">
-                  Voir le dossier
-                </Button>
-                <Button href="/contact" variant="ghost" className="px-4 py-3">
-                  En parler
+                  Télécharger le dossier
                 </Button>
               </div>
             </>

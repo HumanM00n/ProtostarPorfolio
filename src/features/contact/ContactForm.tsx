@@ -156,10 +156,7 @@ export function ContactForm({
         />
       </label>
 
-      <div className="flex flex-col gap-4 pt-1 sm:flex-row sm:items-center sm:justify-between">
-        <p className="max-w-[250px] text-[10px] leading-relaxed text-paper/30">
-          Formulaire sans serveur : votre message s&apos;ouvre dans votre boîte mail.
-        </p>
+      <div className="flex justify-end pt-1">
         <button
           type="submit"
           className="group inline-flex shrink-0 items-center justify-center gap-3 bg-volt px-5 py-3.5 font-mono text-[11px] uppercase tracking-[0.15em] text-paper transition-colors hover:bg-paper hover:text-ink"

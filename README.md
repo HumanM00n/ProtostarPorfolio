@@ -15,8 +15,31 @@ npm run lint
 ## Modifier le contenu
 
 1. Éditer `src/data/site.ts` (textes, palmarès, calendrier, formules, galerie, contacts…).
-2. Commit + push sur `main`.
-3. Vercel redéploie automatiquement (une URL d'aperçu est créée pour chaque autre branche).
+2. Ouvrir une PR → la CI lance lint + build puis publie une URL de preview Vercel.
+3. Merge sur `main` → déploiement en production.
+
+## Déploiement (GitHub Actions → Vercel)
+
+Pipeline : `.github/workflows/ci-cd.yml`
+
+| Événement          | Jobs                                              |
+| ------------------ | ------------------------------------------------- |
+| Pull request       | Lint & Build → Deploy Preview                     |
+| Push sur `main`    | Lint & Build → Deploy Production                  |
+| Lancement manuel   | Idem push (si lancé sur `main`)                   |
+
+Le déploiement automatique de Vercel via Git est désactivé dans `vercel.json`
+(`git.deploymentEnabled: false`) : seul GitHub Actions déploie, et uniquement si la CI passe.
+
+### Configuration (une seule fois)
+
+1. Lier le projet en local : `npx vercel link` → crée `.vercel/project.json` (ignoré par git)
+   qui contient `orgId` et `projectId`.
+2. Créer un token : vercel.com → Account Settings → Tokens.
+3. Dans GitHub → Settings → Secrets and variables → Actions, ajouter :
+   - `VERCEL_TOKEN`
+   - `VERCEL_ORG_ID` (= `orgId`)
+   - `VERCEL_PROJECT_ID` (= `projectId`)
 
 Les photos actuelles sont des images d'illustration Pexels. Pour mettre les vraies photos :
 les déposer dans `public/photos/` et remplacer `px("…")` par `"/photos/mon-image.jpg"` dans `site.ts`.
@@ -45,7 +68,7 @@ src/
 │   └── globals.css       # Thème Tailwind (couleurs, effets, styles d'impression)
 ├── components/
 │   ├── layout/           # Nav (client), Footer
-│   └── ui/               # Briques réutilisables : Button, Eyebrow, PageHeader, Reveal, SmartImage, icons
+│   └── ui/               # Briques réutilisables : Button, PageHeader, Reveal, SmartImage, icons
 ├── features/             # Sections métier, regroupées par page
 │   └── home/ pilot/ results/ gallery/ partners/ contact/ deck/
 ├── data/

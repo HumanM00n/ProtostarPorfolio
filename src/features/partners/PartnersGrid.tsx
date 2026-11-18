@@ -1,6 +1,5 @@
-import Link from "next/link";
 import type { Partner } from "@/data/types";
-import { ArrowUpRight, Lightning } from "@/components/ui/icons";
+import { Lightning } from "@/components/ui/icons";
 
 export function PartnersGrid({ partners }: { partners: Partner[] }) {
   return (
@@ -25,19 +24,13 @@ export function PartnersGrid({ partners }: { partners: Partner[] }) {
             </div>
           </div>
         ))}
-        <Link
-          href="/contact"
-          className="group flex min-h-[120px] flex-col justify-between border border-volt bg-volt p-4 text-left text-ink"
-        >
-          <div className="flex w-full items-start justify-between">
-            <Lightning filled className="h-3 w-3" />
-            <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-          </div>
+        <div className="flex min-h-[120px] flex-col justify-between border border-volt bg-volt p-4 text-ink">
+          <Lightning filled className="h-3 w-3" />
           <div>
             <div className="font-display text-[22px] uppercase leading-none">Votre marque ?</div>
             <div className="label-mono mt-1.5 text-[8px] opacity-60">Une place à prendre</div>
           </div>
-        </Link>
+        </div>
       </div>
     </>
   );

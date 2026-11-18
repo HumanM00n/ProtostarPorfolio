@@ -82,7 +82,7 @@ export function Footer() {
 
         <div className="flex flex-col items-start justify-between gap-4 py-6 sm:flex-row sm:items-center">
           <p className="label-mono text-[8px] leading-relaxed text-paper/25">
-            © {year} {identity.brand} — Tous droits réservés · Photographies d’illustration
+            © {year} {identity.brand} — Tous droits réservés
           </p>
           <div className="flex items-center gap-5">
             {instagram && (

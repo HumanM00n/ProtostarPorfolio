@@ -22,7 +22,7 @@ export function GalleryGrid({ images }: { images: GalleryItem[] }) {
         <Reveal
           key={image.id}
           delay={index * 60}
-          className={cn("group relative min-h-[260px] overflow-hidden bg-ink", layouts[index] ?? layouts[0])}
+          className={cn("group relative min-h-65 overflow-hidden bg-ink", layouts[index] ?? layouts[0])}
         >
           <figure className="absolute inset-0">
             <SmartImage
@@ -33,7 +33,7 @@ export function GalleryGrid({ images }: { images: GalleryItem[] }) {
               sizes="(min-width: 1024px) 60vw, (min-width: 640px) 50vw, 100vw"
               priority={index < 2}
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-ink/75 via-ink/5 to-transparent" aria-hidden="true" />
+            <div className="absolute inset-0 bg-linear-to-t from-ink/75 via-ink/5 to-transparent" aria-hidden="true" />
             <div className="absolute left-3.5 top-3.5 flex items-center gap-1.5 border border-paper/20 bg-ink/55 px-2.5 py-1.5 backdrop-blur">
               <Lightning filled className="h-2.5 w-2.5 text-volt" />
               <span className="label-mono text-[8px] text-paper/80">{image.tag}</span>
@@ -48,7 +48,7 @@ export function GalleryGrid({ images }: { images: GalleryItem[] }) {
 
       <Reveal
         delay={320}
-        className={cn("relative flex min-h-[260px] flex-col justify-between overflow-hidden bg-volt p-6 text-paper", layouts[5])}
+        className={cn("relative flex min-h-65 flex-col justify-between overflow-hidden bg-volt p-6 text-paper", layouts[5])}
       >
         <div className="flex items-start justify-between gap-4">
           <Lightning filled className="h-6 w-6" />
@@ -60,7 +60,7 @@ export function GalleryGrid({ images }: { images: GalleryItem[] }) {
             <br />
             sur le kart.
           </h2>
-          <p className="mt-2 max-w-[240px] text-[12px] leading-relaxed text-paper/70">
+          <p className="mt-2 max-w-60 text-[12px] leading-relaxed text-paper/70">
             Associez votre image à une saison, pas à un simple logo.
           </p>
           <Link

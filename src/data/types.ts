@@ -6,7 +6,8 @@ export type PalmaresItem = {
   id: string;
   year: string;
   competition: string;
-  category: string;
+  /** Optionnelle : non affichée si absente. */
+  category?: string;
   result: string;
   highlight: boolean;
 };
@@ -35,7 +36,6 @@ export type SiteContent = {
     role: string;
     number: string;
     season: string;
-    category: string;
     age: string;
     location: string;
     since: string;
@@ -73,6 +73,7 @@ export type SiteContent = {
     city: string;
     responseTime: string;
   };
+  support: { label: string; url: string };
   socials: Social[];
   deck: {
     intro: string;
