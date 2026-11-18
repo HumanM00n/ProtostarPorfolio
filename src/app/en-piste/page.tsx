@@ -35,7 +35,7 @@ export default function EnPistePage() {
                 <a
                   href={instagram.url}
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   className="label-mono mt-4 urlinline-flex items-center gap-2 border-b border-ink/20 pb-1 text-[10px] text-ink transition-colors hover:border-volt hover:text-ink/60"
                 >
                   <Instagram className="h-3.5 w-3.5" />
