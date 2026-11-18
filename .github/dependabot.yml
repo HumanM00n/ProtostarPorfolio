@@ -1,18 +1,26 @@
 version: 2
 updates:
-  # Dépendances npm : une PR groupée par semaine (correctifs et versions mineures).
+  # Dépendances npm : une seule PR groupée par semaine (correctifs et versions mineures).
   - package-ecosystem: npm
     directory: /
     schedule:
       interval: weekly
       day: monday
-    open-pull-requests-limit: 5
+    open-pull-requests-limit: 3
     groups:
       minor-and-patch:
         update-types: [minor, patch]
+    ignore:
+      # Versions majeures (TypeScript 7, ESLint 10, Next 17…) : montées à la main,
+      # une fois supportées par Next.js / eslint-config-next.
+      - dependency-name: "*"
+        update-types: [version-update:semver-major]
 
-  # Actions GitHub utilisées par la CI/CD.
+  # Actions GitHub utilisées par la CI/CD : une seule PR groupée par mois.
   - package-ecosystem: github-actions
     directory: /
     schedule:
       interval: monthly
+    groups:
+      github-actions:
+        patterns: ["*"]
