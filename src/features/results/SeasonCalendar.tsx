@@ -16,7 +16,7 @@ export function SeasonCalendar({ season, races }: { season: string; races: Calen
         {races.map((race, index) => (
           <li
             key={race.id}
-            className={cn("flex items-center gap-3 border-b border-paper/[0.07] py-3.5", index === 0 && "bg-volt/[0.045]")}
+            className={cn("flex items-center gap-3 border-b border-paper/[0.07] py-3.5", index === 0 && "bg-volt/4.5")}
           >
             <div className="w-14 shrink-0">
               <div className={cn("label-mono text-[9px]", index === 0 ? "text-volt" : "text-paper/45")}>{race.date}</div>
@@ -29,7 +29,7 @@ export function SeasonCalendar({ season, races }: { season: string; races: Calen
           </li>
         ))}
       </ol>
-      <div className="mt-4 border border-volt/25 bg-volt/[0.06] p-3.5">
+      <div className="mt-4 border border-volt/25 bg-volt/6 p-3.5">
         <div className="label-mono text-[8px] text-paper/40">Objectif de saison</div>
         <div className="mt-1 flex items-baseline gap-2">
           <span className="font-display text-3xl uppercase leading-none text-volt">Top 5</span>

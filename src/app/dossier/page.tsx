@@ -11,12 +11,12 @@ export default function DossierPage() {
   return (
     <section className="section-dark py-10 md:py-16">
       <div className="wrap">
-        <div className="no-print mx-auto mb-5 flex max-w-[920px]">
+        <div className="no-print mx-auto mb-5 flex max-w-230">
           <p className="label-mono text-[9px] text-paper/45">
             Astuce : « Imprimer / PDF » puis « Enregistrer au format PDF » pour télécharger le dossier.
           </p>
         </div>
-        <div className="mx-auto max-w-[920px] border border-paper/15 shadow-2xl">
+        <div className="mx-auto max-w-230 border border-paper/15 shadow-2xl">
           <DeckDocument />
         </div>
       </div>

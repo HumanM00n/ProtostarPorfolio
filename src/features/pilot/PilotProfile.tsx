@@ -10,7 +10,7 @@ export function PilotProfile() {
   return (
     <section className="section-paper relative overflow-hidden py-20 md:py-28">
       <div
-        className="pointer-events-none absolute right-0 top-0 h-80 w-80 -translate-y-1/3 translate-x-1/3 rounded-full border border-ink/[0.06]"
+        className="pointer-events-none absolute right-0 top-0 h-80 w-80 -translate-y-1/3 translate-x-1/3 rounded-full border border-ink/6"
         aria-hidden="true"
       />
       <div className="wrap">
@@ -27,12 +27,12 @@ export function PilotProfile() {
                 <SmartImage
                   src={identity.actionImage}
                   alt={`${identity.pilotName} en piste lors d'une course de karting`}
-                  className="aspect-[16/10] w-full md:aspect-[4/3]"
+                  className="aspect-16/10 w-full md:aspect-4/3"
                   imgClassName="contrast-105 transition duration-700 hover:scale-[1.03]"
                   sizes="(min-width: 1024px) 40vw, 100vw"
                   priority
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-transparent to-transparent" aria-hidden="true" />
+                <div className="absolute inset-0 bg-linear-to-t from-ink/80 via-transparent to-transparent" aria-hidden="true" />
                 <figcaption className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 p-4 text-paper">
                   <div>
                     <div className="label-mono text-[8px] text-volt">En course · Saison 2025</div>

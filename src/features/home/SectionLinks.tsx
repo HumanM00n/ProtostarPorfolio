@@ -31,7 +31,7 @@ export function SectionLinks() {
             <Reveal key={link.href} delay={index * 60} className="flex">
               <Link
                 href={link.href}
-                className="group flex min-h-[220px] w-full flex-col justify-between bg-paper p-5 transition-colors hover:bg-ink hover:text-paper"
+                className="group flex min-h-55 w-full flex-col justify-between bg-paper p-5 transition-colors hover:bg-ink hover:text-paper"
               >
                 <div className="flex items-start justify-between">
                   <span className="label-mono text-[9px] text-volt">0{index + 1}</span>

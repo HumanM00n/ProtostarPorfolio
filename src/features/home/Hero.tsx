@@ -13,11 +13,11 @@ export function Hero() {
       <div className="hero-glow pointer-events-none absolute inset-0" aria-hidden="true" />
       <div className="scratches pointer-events-none absolute inset-0" aria-hidden="true" />
       <div
-        className="pointer-events-none absolute -right-24 top-10 h-[420px] w-[420px] rounded-full border border-paper/[0.06]"
+        className="pointer-events-none absolute -right-24 top-10 h-105 w-105 rounded-full border border-paper/6"
         aria-hidden="true"
       />
       <div
-        className="halftone pointer-events-none absolute -bottom-10 -right-10 hidden h-[420px] w-[420px] opacity-80 md:block"
+        className="halftone pointer-events-none absolute -bottom-10 -right-10 hidden h-105 w-105 opacity-80 md:block"
         aria-hidden="true"
       />
 
@@ -80,13 +80,13 @@ export function Hero() {
           </div>
 
           <div className="lg:col-span-5">
-            <div className="relative mx-auto w-full max-w-[420px] pb-8 pl-6 pr-4 sm:pb-10 sm:pl-10 lg:max-w-none">
+            <div className="relative mx-auto w-full max-w-105 pb-8 pl-6 pr-4 sm:pb-10 sm:pl-10 lg:max-w-none">
               <div className="pointer-events-none absolute left-0 top-8 hidden h-32 w-px bg-volt/60 lg:block" aria-hidden="true" />
               <div className="pointer-events-none absolute left-0 top-40 hidden origin-left translate-y-12 -rotate-90 whitespace-nowrap pl-1 lg:block">
                 <span className="label-mono text-[8px] text-paper/30">Portrait — Paddock 2025</span>
               </div>
 
-              <div className="clip-slant relative aspect-[4/5] overflow-hidden border-[3px] border-white bg-carbon shadow-[0_0_70px_rgba(255,30,45,0.28)]">
+              <div className="clip-slant relative aspect-4/5 overflow-hidden border-[3px] border-white bg-carbon shadow-[0_0_70px_rgba(255,30,45,0.28)]">
                 <SmartImage
                   src={identity.portrait}
                   alt={`${identity.pilotName}, pilote de karting, prêt pour la course`}
@@ -95,12 +95,12 @@ export function Hero() {
                   sizes="(min-width: 1024px) 40vw, 420px"
                   priority
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/20 to-ink/10" aria-hidden="true" />
+                <div className="absolute inset-0 bg-linear-to-t from-ink via-ink/20 to-ink/10" aria-hidden="true" />
 
                 <div className="absolute left-4 top-4 flex items-center gap-2 border border-paper/20 bg-ink/55 px-2.5 py-1.5 backdrop-blur">
                   <span className="h-1.5 w-1.5 rounded-full bg-volt" />
                   <span className="label-mono text-[8px] text-paper/80">
-                    {identity.role} · #{identity.number}
+                  #{identity.number}
                   </span>
                 </div>
 

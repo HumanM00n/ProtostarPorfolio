@@ -19,7 +19,7 @@ export default function ContactPage() {
   return (
     <section className="section-dark relative overflow-hidden py-20 md:py-28">
       <div
-        className="pointer-events-none absolute left-0 top-0 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/3 rounded-full"
+        className="pointer-events-none absolute left-0 top-0 h-150 w-150 -translate-x-1/2 -translate-y-1/3 rounded-full"
         style={{ background: "radial-gradient(circle, rgba(255,30,45,0.1) 0%, transparent 65%)" }}
         aria-hidden="true"
       />
