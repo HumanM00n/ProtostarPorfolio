@@ -21,7 +21,7 @@ export function SectionLinks() {
             <h2 className="font-display text-[clamp(2.6rem,5.6vw,4.8rem)] uppercase leading-[0.9]">
               Le projet,
               <br />
-              <span className="text-ink/35">Brick par brick.</span>
+              <span className="text-ink/35">Brick by brick.</span>
             </h2>
           </div>
         </Reveal>

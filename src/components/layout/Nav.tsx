@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
+import { NavLink } from "@/components/ui/NavLink";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { navLinks } from "@/data/navigation";
@@ -42,7 +42,7 @@ export function Nav({ brand, support }: { brand: string; support: { label: strin
         )}
       >
         <div className="wrap flex h-[70px] items-center justify-between gap-5 md:h-[82px]">
-          <Link href="/" className="flex shrink-0 items-center" aria-label={`${brand} — accueil`}>
+          <NavLink href="/" className="flex shrink-0 items-center" aria-label={`${brand} — accueil`}>
             <Image
               src="/logo-protostar.png"
               alt={brand}
@@ -51,11 +51,11 @@ export function Nav({ brand, support }: { brand: string; support: { label: strin
               priority
               className="h-11 w-auto md:h-[52px]"
             />
-          </Link>
+          </NavLink>
 
           <nav className="hidden items-center gap-7 lg:flex" aria-label="Navigation principale">
             {navLinks.map((link) => (
-              <Link
+              <NavLink
                 key={link.href}
                 href={link.href}
                 aria-current={isActive(link.href) ? "page" : undefined}
@@ -65,7 +65,7 @@ export function Nav({ brand, support }: { brand: string; support: { label: strin
                 )}
               >
                 {link.label}
-              </Link>
+              </NavLink>
             ))}
           </nav>
 
@@ -109,7 +109,7 @@ export function Nav({ brand, support }: { brand: string; support: { label: strin
           </div>
           <nav className="wrap flex flex-1 flex-col justify-center gap-1 overflow-y-auto py-8" aria-label="Navigation mobile">
             {navLinks.map((link, index) => (
-              <Link
+              <NavLink
                 key={link.href}
                 href={link.href}
                 onClick={close}
@@ -128,7 +128,7 @@ export function Nav({ brand, support }: { brand: string; support: { label: strin
                   </span>
                 </span>
                 <ArrowUpRight className="h-5 w-5 text-paper/40" />
-              </Link>
+              </NavLink>
             ))}
           </nav>
           <div className="wrap shrink-0 space-y-3 pb-8">
