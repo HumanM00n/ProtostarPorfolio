@@ -1,0 +1,43 @@
+{
+  "identity": {
+    "brand": "PROTOSTAR",
+    "monogram": "AB",
+    "pilotName": "Protostar",
+    "role": "Pilote de karting",
+    "number": "48",
+    "season": "Saison 2026",
+    "age": "17",
+    "location": "Paris, France",
+    "since": "2026",
+    "license": "FFSA · 2026-84127",
+    "headlineA": "Chaque étoile commence quelque part.",
+    "headlineB": "Bienvenue chez Protostar !",
+    "kicker": "Saison 2026",
+    "intro": "17 ans, jeune pilote de karting basé sur Paris, qui veut transformer son rêve en un objectif concret. Je construis petit à petit mon parcours vers le sport automobile, et cherche à m’entourer de sponsors qui veulent une visibilité réelle, et une histoire authentique, auprès d’une communauté passionnée et engagée, une histoire dont le début n’a pas été facile mais dont la fin reste à écrire, et un projet fou, mais pas irréalisable.",
+    "availability": "Recherche active de partenaires pour la saison 2026",
+    "portrait": "https://images.pexels.com/photos/16753309/pexels-photo-16753309.jpeg",
+    "actionImage": "https://images.pexels.com/photos/11086446/pexels-photo-11086446.jpeg"
+  },
+  "stats": [
+    {
+      "value": "À venir",
+      "label": "Victoires",
+      "detail": ""
+    },
+    {
+      "value": "À venir",
+      "label": "Podiums",
+      "detail": ""
+    },
+    {
+      "value": "À venir",
+      "label": "Saisons",
+      "detail": ""
+    },
+    {
+      "value": "À venir",
+      "label": "National",
+      "detail": ""
+    }
+  ]
+}

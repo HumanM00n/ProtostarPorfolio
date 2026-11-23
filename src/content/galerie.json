@@ -1,0 +1,34 @@
+{
+  "gallery": [
+    {
+      "src": "https://images.pexels.com/photos/11086446/pexels-photo-11086446.jpeg",
+      "caption": "Départ, IAME Series France",
+      "tag": "Course"
+    },
+    {
+      "src": "https://images.pexels.com/photos/5640511/pexels-photo-5640511.jpeg",
+      "caption": "Duel en tête de peloton",
+      "tag": "Bagarre"
+    },
+    {
+      "src": "https://images.pexels.com/photos/13245019/pexels-photo-13245019.jpeg",
+      "caption": "Prêt pour la manche",
+      "tag": "Paddock"
+    },
+    {
+      "src": "https://images.pexels.com/photos/14148109/pexels-photo-14148109.jpeg",
+      "caption": "Trajectoire intérieure",
+      "tag": "Technique"
+    },
+    {
+      "src": "https://images.pexels.com/photos/34481274/pexels-photo-34481274.jpeg",
+      "caption": "Sous les projecteurs",
+      "tag": "Indoor"
+    },
+    {
+      "src": "https://images.pexels.com/photos/8368861/pexels-photo-8368861.jpeg",
+      "caption": "Objectif : la prochaine ligne droite",
+      "tag": "Saison 2026"
+    }
+  ]
+}

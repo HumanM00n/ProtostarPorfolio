@@ -1,11 +1,14 @@
 import Link from "next/link";
 import { site } from "@/data/site";
+import { cn } from "@/lib/cn";
 import { SmartImage } from "@/components/ui/SmartImage";
 import { ArrowUpRight, Headphones, Lightning, SpinnerMark } from "@/components/ui/icons";
+import { nextRaceIndex } from "@/features/results/SeasonCalendar";
 
 export function Hero() {
-  const { identity, stats, calendar } = site;
-  const nextRace = calendar[0];
+  const { identity, stats, calendar, seasonGoal } = site;
+  // Prochaine course = première sans résultat. Aucune → le bandeau est masqué.
+  const nextRace = calendar[nextRaceIndex(calendar)];
 
   return (
     <section className="grain relative overflow-hidden bg-ink text-paper">
@@ -53,8 +56,10 @@ export function Hero() {
               <p className="max-w-lg text-[15px] leading-relaxed text-paper/65 md:text-base">{identity.intro}</p>
               <div className="hidden shrink-0 border border-paper/15 p-3.5 text-center sm:block">
                 <div className="label-mono text-[8px] text-paper/40">Objectif</div>
-                <div className="mt-1 font-display text-2xl uppercase leading-none text-volt">Podium</div>
-                <div className="label-mono mt-1 text-[8px] text-paper/40">National 2026</div>
+                <div className="mt-1 font-display text-2xl uppercase leading-none text-volt">{seasonGoal.value}</div>
+                {seasonGoal.detail && (
+                  <div className="label-mono mt-1 text-[8px] text-paper/40">{seasonGoal.detail}</div>
+                )}
               </div>
             </div>
 
@@ -71,7 +76,15 @@ export function Hero() {
             <div className="mt-9 grid grid-cols-2 gap-px border-y border-paper/10 bg-paper/10 sm:grid-cols-4">
               {stats.map((stat) => (
                 <div key={`${stat.label}-${stat.value}`} className="bg-ink px-3 py-4 first:pl-0 sm:px-4">
-                  <div className="font-display text-[34px] leading-none text-paper md:text-[38px]">{stat.value}</div>
+                  <div
+                    className={cn(
+                      "whitespace-nowrap font-display leading-none text-paper",
+                      // Valeur textuelle (ex. "À venir") : plus petite pour tenir sur une ligne.
+                      stat.value.length > 4 ? "text-[22px] uppercase md:text-[26px]" : "text-[34px] md:text-[38px]",
+                    )}
+                  >
+                    {stat.value}
+                  </div>
                   <div className="label-mono mt-2 text-[9px] text-volt">{stat.label}</div>
                   <div className="mt-0.5 text-[10px] leading-tight text-paper/35">{stat.detail}</div>
                 </div>
@@ -120,7 +133,8 @@ export function Hero() {
                   <div>
                     <div className="label-mono text-[8px] opacity-70">Prochaine course</div>
                     <div className="mt-0.5 text-sm font-bold">
-                      {nextRace.date.toLowerCase()} · {nextRace.circuit}
+                      {nextRace.date ? `${nextRace.date.toLowerCase()} · ` : ""}
+                      {nextRace.circuit}
                     </div>
                   </div>
                   <Link

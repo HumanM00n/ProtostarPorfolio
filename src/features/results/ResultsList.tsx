@@ -3,7 +3,7 @@
 import { useState } from "react";
 import type { PalmaresItem } from "@/data/types";
 import { cn } from "@/lib/cn";
-import { Lightning } from "@/components/ui/icons";
+import { Lightning, MapPin } from "@/components/ui/icons";
 
 const ALL = "Tous";
 
@@ -48,7 +48,14 @@ export function ResultsList({ items }: { items: PalmaresItem[] }) {
                 {item.competition}
                 {item.highlight && <Lightning filled className="h-3 w-3 text-volt" />}
               </div>
-              {item.category && <div className="label-mono mt-1 text-[9px] text-paper/35">{item.category}</div>}
+              <div className="label-mono mt-1 flex flex-wrap items-center gap-x-2 text-[9px] text-paper/35">
+                <span className="flex items-center gap-1.5">
+                  <MapPin className="h-3 w-3 text-paper/30" />
+                  <span className="sr-only">Piste :</span>
+                  {item.track}
+                </span>
+                {item.category && <span>· {item.category}</span>}
+              </div>
               <div className="mt-2 font-mono text-[10px] uppercase tracking-[0.08em] text-volt md:hidden">{item.result}</div>
             </div>
             <span className="hidden justify-self-end border border-paper/15 px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.08em] text-paper/70 transition-colors group-hover:border-volt/50 group-hover:text-volt md:inline-flex">
@@ -57,10 +64,6 @@ export function ResultsList({ items }: { items: PalmaresItem[] }) {
           </li>
         ))}
       </ul>
-
-      <div className="mt-5 flex flex-wrap items-center justify-between gap-3">
-        <p className="text-[11px] text-paper/35">Classements officiels FFSA · IAME Series France</p>
-      </div>
     </>
   );
 }

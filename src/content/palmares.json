@@ -1,0 +1,73 @@
+{
+  "palmares": [
+    {
+      "year": "2026",
+      "competition": "Mens & Ladies",
+      "track": "RKO",
+      "result": "23e",
+      "highlight": false
+    },
+    {
+      "year": "2026",
+      "competition": "Soucy World Cup",
+      "track": "SEK",
+      "result": "P23/30",
+      "highlight": false
+    },
+    {
+      "year": "2026",
+      "competition": "Iron Kart",
+      "track": "RKC",
+      "result": "P7/7",
+      "highlight": false
+    },
+    {
+      "year": "2025",
+      "competition": "Pro Drivers",
+      "track": "Aérokart",
+      "result": "P7/7",
+      "highlight": false
+    },
+    {
+      "year": "2025",
+      "competition": "Pro Drivers",
+      "track": "Aérokart",
+      "result": "P7/8",
+      "highlight": false
+    }
+  ],
+  "bestLaps": [
+    {
+      "track": "Aérokart", "time" : ""
+    },
+    {
+      "track": "RKC", "time" : "1:01.495"
+    },
+    {
+      "track": "SEK", "time" : "54.754"
+    },
+    {
+      "track": "RKO", "time" : "50.285"
+    }
+  ],
+  "calendar": [
+    {
+      "event": "Iron Kart",
+      "circuit": "RKC",
+      "result": "P7/7"
+    },
+    {
+      "event": "Soucy World Cup",
+      "circuit": "SEK",
+      "result": "P23/30"
+    },
+    {
+      "event": "Mens & Ladies",
+      "circuit": "RKO",
+      "result": "23e"
+    }
+  ],
+  "seasonGoal": {
+    "value": "Premiers podiums en 2027"
+  }
+}

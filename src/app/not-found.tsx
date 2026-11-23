@@ -1,8 +1,10 @@
 import Link from "next/link";
 import { ArrowUpRight, Lightning } from "@/components/ui/icons";
+import { SiteChrome } from "@/components/layout/SiteChrome";
 
 export default function NotFound() {
   return (
+    <SiteChrome>
     <section className="section-dark grain relative flex min-h-[70vh] items-center overflow-hidden py-24">
       <div className="hero-glow pointer-events-none absolute inset-0" aria-hidden="true" />
       <div className="wrap relative">
@@ -24,5 +26,6 @@ export default function NotFound() {
         </Link>
       </div>
     </section>
+    </SiteChrome>
   );
 }

@@ -8,11 +8,31 @@ export type PalmaresItem = {
   competition: string;
   /** Optionnelle : non affichée si absente. */
   category?: string;
+  /** Piste / circuit où la course a eu lieu. */
+  track: string;
   result: string;
   highlight: boolean;
 };
 
-export type CalendarItem = { id: string; date: string; event: string; circuit: string };
+/** Meilleur tour réalisé sur une piste. `time` vide = chrono pas encore renseigné. */
+export type BestLap = {
+  id: string;
+  track: string;
+  /** Format libre, ex. "42.318" ou "1:02.540". */
+  time: string;
+  /** Optionnel : date ou contexte du chrono (ex. "Iron Kart 2026"). */
+  context?: string;
+};
+
+export type CalendarItem = {
+  id: string;
+  /** Ex. "22 MAR". Vide si la date n'est pas encore connue. */
+  date: string;
+  event: string;
+  circuit: string;
+  /** Renseigné = course terminée (affiche le classement). Vide = course à venir. */
+  result?: string;
+};
 export type Partner = { id: string; name: string; kind: string };
 
 export type Tier = {
@@ -58,7 +78,9 @@ export type SiteContent = {
     values: Value[];
   };
   palmares: PalmaresItem[];
+  bestLaps: BestLap[];
   calendar: CalendarItem[];
+  seasonGoal: { value: string; detail: string };
   partners: Partner[];
   tiers: Tier[];
   tierNote: string;

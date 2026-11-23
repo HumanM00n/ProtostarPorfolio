@@ -1,0 +1,33 @@
+{
+  "contact": {
+    "kicker": "Contact",
+    "titleA": "Et si on passait à la",
+    "titleB": "vitesse supérieure ?",
+    "intro": "Un partenariat, une question, une simple envie de venir me voir sur la piste ? Écrivez-moi. Je réponds personnellement sous 48 h.",
+    "email": "contact@protostar.racing",
+    "phone": "+33 6 12 34 56 78",
+    "city": "Paris, France",
+    "responseTime": "Réponse sous 48 h"
+  },
+  "support": {
+    "label": "Me soutenir",
+    "url": "https://www.leetchi.com/"
+  },
+  "socials": [
+    {
+      "label": "Instagram",
+      "handle": "@protostar_racing",
+      "url": "https://instagram.com/protostar_racing"
+    },
+    {
+      "label": "YouTube",
+      "handle": "@Protostar_racing",
+      "url": "https://www.youtube.com/@Protostar_racing"
+    },
+    {
+      "label": "TikTok",
+      "handle": "@protostar.racing",
+      "url": "https://www.tiktok.com/@_protostar_?_r=1&_t=ZN-9BUKEQNMfEE"
+    }
+  ]
+}
