@@ -1,6 +1,6 @@
 import { Lightning } from "@/components/ui/icons";
 
-const items = ["Discipline", "Régularité", "Progression", "Partenariat", "Saison 2026"];
+const items = ["Discipline", "Travail", "Resilience ", "Ambition ", "Audace"];
 
 export function Ticker() {
   const group = items.map((item) => (

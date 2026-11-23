@@ -1,0 +1,60 @@
+{
+  "partners": [
+    {
+      "name": "Atelier 27",
+      "kind": "Préparation moteur"
+    },
+    {
+      "name": "Vélocité",
+      "kind": "Équipement pilote"
+    },
+    {
+      "name": "KartData",
+      "kind": "Télémétrie"
+    }
+  ],
+  "tiers": [
+    {
+      "name": "Copilote",
+      "price": "500 €",
+      "period": "/ saison",
+      "tagline": "Le premier virage ensemble.",
+      "features": [
+        "Logo sur la page partenaires",
+        "1 mention Instagram dédiée",
+        "Carte de saison dédicacée",
+        "Rapport de saison PDF"
+      ],
+      "featured": false
+    },
+    {
+      "name": "Partenaire",
+      "price": "1 500 €",
+      "period": "/ saison",
+      "tagline": "Votre marque sur la piste.",
+      "features": [
+        "Logo sur le kart et la combinaison",
+        "6 posts + 4 stories",
+        "Photos pro & droit d'usage",
+        "2 invitations en paddock",
+        "Rapport de saison détaillé"
+      ],
+      "featured": true
+    },
+    {
+      "name": "Écurie",
+      "price": "3 500 €",
+      "period": "/ saison",
+      "tagline": "Un projet à l'année.",
+      "features": [
+        "Espace principal sur le kart",
+        "Activation sur les courses",
+        "Contenus vidéo dédiés",
+        "Journée pilote privée",
+        "Programme co-construit"
+      ],
+      "featured": false
+    }
+  ],
+  "tierNote": "Les montants couvrent l'engagement sportif, l'équipement et les déplacements. Chaque formule peut être ajustée, en visibilité comme en budget."
+}

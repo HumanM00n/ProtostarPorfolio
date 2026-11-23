@@ -3,6 +3,7 @@ import { site } from "@/data/site";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { Reveal } from "@/components/ui/Reveal";
 import { Trophy } from "@/components/ui/icons";
+import { BestLaps } from "@/features/results/BestLaps";
 import { ResultsList } from "@/features/results/ResultsList";
 import { SeasonCalendar } from "@/features/results/SeasonCalendar";
 
@@ -23,17 +24,17 @@ export default function PalmaresPage() {
         <PageHeader
           title={
             <>
-              Les résultats
+              MON PARCOURS
               <br />
-              <span className="text-volt">parlent.</span>
+              <span className="text-volt">SAISON APRÈS SAISON.</span>
             </>
           }
           aside={
             <div className="flex items-start gap-3 border-l border-paper/15 pl-5">
               <Trophy className="mt-0.5 h-5 w-5 shrink-0 text-volt" />
               <p className="text-sm leading-relaxed text-paper/55">
-                Six saisons de compétition, des podiums en régional comme en national, et une progression
-                constante au chrono.
+                Mes premières courses en compétition, piste par piste, et une progression qui se mesure au
+                chrono.
               </p>
             </div>
           }
@@ -44,9 +45,13 @@ export default function PalmaresPage() {
             <ResultsList items={site.palmares} />
           </Reveal>
           <Reveal delay={150} className="lg:col-span-4">
-            <SeasonCalendar season={site.identity.season} races={site.calendar} />
+            <SeasonCalendar season={site.identity.season} races={site.calendar} goal={site.seasonGoal} />
           </Reveal>
         </div>
+
+        <Reveal className="mt-16 md:mt-20">
+          <BestLaps laps={site.bestLaps} races={site.palmares} />
+        </Reveal>
       </div>
     </section>
   );

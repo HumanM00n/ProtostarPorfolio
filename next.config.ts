@@ -26,6 +26,20 @@ const csp = [
   ...(isDev ? [] : ["upgrade-insecure-requests"]),
 ].join("; ");
 
+const keystaticCsp = [
+  "default-src 'self'",
+  `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""}`,
+  // Keystatic charge sa police (Inter) depuis Google Fonts.
+  "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+  "img-src 'self' blob: data: https://images.pexels.com https://avatars.githubusercontent.com https://*.githubusercontent.com",
+  "font-src 'self' data: https://fonts.gstatic.com",
+  "connect-src 'self' https://api.github.com https://*.githubusercontent.com",
+  "object-src 'none'",
+  "base-uri 'self'",
+  "form-action 'self' https://github.com",
+  "frame-ancestors 'none'",
+].join("; ");
+
 const securityHeaders = [
   { key: "Content-Security-Policy", value: csp },
   { key: "X-Content-Type-Options", value: "nosniff" },
@@ -45,8 +59,16 @@ const nextConfig: NextConfig = {
   cacheComponents: true,
   partialPrefetching: true,
   poweredByHeader: false,
+  // Dev uniquement : Keystatic utilise 127.0.0.1 (et non localhost) en local, notamment pour la
+  // connexion GitHub. Sans cette entrée, Next bloque le JS de dev et /keystatic reste blanc.
+  allowedDevOrigins: ["127.0.0.1"],
   async headers() {
-    return [{ source: "/(.*)", headers: securityHeaders }];
+    return [
+      { source: "/(.*)", headers: securityHeaders },
+      // Back-office Keystatic : CSP propre (API GitHub, avatars). Déclarée après : elle remplace la CSP du site.
+      { source: "/keystatic/:path*", headers: [{ key: "Content-Security-Policy", value: keystaticCsp }] },
+      { source: "/keystatic", headers: [{ key: "Content-Security-Policy", value: keystaticCsp }] },
+    ];
   },
   images: {
     // Photos d'illustration hébergées sur Pexels (à remplacer par les vraies photos dans /public).

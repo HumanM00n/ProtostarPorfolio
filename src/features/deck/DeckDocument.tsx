@@ -58,7 +58,11 @@ export function DeckDocument() {
               key={stat.label}
               className={`border-ink/15 px-4 py-4 md:px-6 ${index % 2 === 1 ? "border-l" : ""} ${index > 1 ? "border-t md:border-t-0" : ""} ${index > 0 ? "md:border-l" : ""}`}
             >
-              <div className="font-display text-3xl leading-none">{stat.value}</div>
+              <div
+                className={`whitespace-nowrap font-display leading-none ${stat.value.length > 4 ? "text-xl uppercase" : "text-3xl"}`}
+              >
+                {stat.value}
+              </div>
               <div className="label-mono mt-1.5 text-[8px] text-ink/45">{stat.label}</div>
               <div className="mt-0.5 text-[9px] text-ink/30">{stat.detail}</div>
             </div>
@@ -125,7 +129,10 @@ export function DeckDocument() {
                   <span className="w-9 shrink-0 font-display text-lg leading-none text-ink/30">{item.year}</span>
                   <div className="min-w-0 flex-1">
                     <div className="text-[11.5px] font-semibold leading-snug">{item.competition}</div>
-                    {item.category && <div className="text-[9.5px] text-ink/40">{item.category}</div>}
+                    <div className="text-[9.5px] text-ink/40">
+                      {item.track}
+                      {item.category ? ` · ${item.category}` : ""}
+                    </div>
                   </div>
                   <span className="max-w-26.25 text-right font-mono text-[8.5px] leading-tight text-ink/65">
                     {item.result}
@@ -134,7 +141,7 @@ export function DeckDocument() {
               ))}
             </div>
             <p className="mt-2 text-[9px] text-ink/35">
-              Classements officiels FFSA · IAME Series France. Détail complet sur le site.
+              Détail complet et meilleurs chronos sur le site.
             </p>
           </section>
 
@@ -153,6 +160,9 @@ export function DeckDocument() {
                     <div className="truncate text-[11.5px] font-medium">{race.event}</div>
                     <div className="text-[9px] text-ink/35">{race.circuit}</div>
                   </div>
+                  {race.result && (
+                    <span className="shrink-0 font-mono text-[8.5px] uppercase text-ink/65">{race.result}</span>
+                  )}
                 </div>
               ))}
             </div>
