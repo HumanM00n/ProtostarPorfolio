@@ -20,7 +20,7 @@ export default function EnPistePage() {
         <PageHeader
           title={
             <>
-              Voytre Pilote,
+              Votre Pilote,
               <br />
               En Photo<span className="text-ink/30">.</span>
             </>
