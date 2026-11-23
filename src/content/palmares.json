@@ -4,7 +4,7 @@
       "year": "2026",
       "competition": "Mens & Ladies",
       "track": "RKO",
-      "result": "23e",
+      "result": "P5/8 - Nouveau pilote",
       "highlight": false
     },
     {
@@ -38,13 +38,13 @@
   ],
   "bestLaps": [
     {
-      "track": "Aérokart", "time" : ""
+      "track": "Aérokart", "time" : "54:156"
     },
     {
       "track": "RKC", "time" : "1:01.495"
     },
     {
-      "track": "SEK", "time" : "54.754"
+      "track": "SEK", "time" : "53.820"
     },
     {
       "track": "RKO", "time" : "50.285"
@@ -64,7 +64,7 @@
     {
       "event": "Mens & Ladies",
       "circuit": "RKO",
-      "result": "23e"
+      "result": "P5/8 - Nouveau pilote"
     }
   ],
   "seasonGoal": {

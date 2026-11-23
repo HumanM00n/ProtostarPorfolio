@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { NavLink } from "@/components/ui/NavLink";
 import { navLinks } from "@/data/navigation";
 import { site } from "@/data/site";
 import { ArrowUpRight, Lightning, SocialIcon } from "@/components/ui/icons";
@@ -14,12 +14,12 @@ export function Footer() {
       <div className="wrap relative z-10 pt-14">
         <div className="grid gap-10 border-b border-paper/10 pb-12 md:grid-cols-12">
           <div className="md:col-span-5">
-            <Link href="/" className="flex items-center gap-3">
+            <NavLink href="/" className="flex items-center gap-3">
               <span className="flex h-9 w-9 -rotate-3 items-center justify-center bg-volt text-ink">
                 <Lightning filled className="h-4 w-4" />
               </span>
               <span className="font-display text-2xl uppercase tracking-[0.04em]">{identity.brand}</span>
-            </Link>
+            </NavLink>
             <p className="mt-4 max-w-xs text-[12.5px] leading-relaxed text-paper/45">
               {identity.pilotName} · pilote de karting. Un projet sportif construit avec des marques qui
               aiment aller vite.
@@ -35,15 +35,15 @@ export function Footer() {
             <ul className="space-y-2.5">
               {navLinks.map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href} className="text-[13px] text-paper/65 transition-colors hover:text-volt">
+                  <NavLink href={link.href} className="text-[13px] text-paper/65 transition-colors hover:text-volt">
                     {link.label}
-                  </Link>
+                  </NavLink>
                 </li>
               ))}
               <li>
-                <Link href="/dossier" className="text-[13px] text-paper/65 transition-colors hover:text-volt">
+                <NavLink href="/dossier" className="text-[13px] text-paper/65 transition-colors hover:text-volt">
                   Dossier sponsor
-                </Link>
+                </NavLink>
               </li>
             </ul>
           </div>
