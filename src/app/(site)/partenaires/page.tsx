@@ -23,9 +23,11 @@ export default function PartenairesPage() {
         <PageHeader
           title={
             <>
-              Votre marque.
+              <span className="text-ink/70">Mon <span className="text-volt/70">histoire</span></span>
               <br />
-              <span className="text-ink/35">Ma trajectoire.</span>
+              <span className="text-ink/80">Votre <span className="text-volt/80">marque</span></span>
+              <br />
+              <span className="text-ink">Notre <span className="text-volt">projet</span></span>
             </>
           }
           aside={

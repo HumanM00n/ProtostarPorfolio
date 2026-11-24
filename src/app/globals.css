@@ -235,6 +235,68 @@
   display: none;
 }
 
+/* ---- Barre de défilement « voiture » : voir src/components/layout/ScrollCar.tsx ---- */
+.scroll-car {
+  display: none;
+}
+
+/* Souris / trackpad uniquement : sur écran tactile, la barre native reste. */
+@media (hover: hover) and (pointer: fine) {
+  html:has(.scroll-car) {
+    scrollbar-width: none;
+  }
+
+  html:has(.scroll-car)::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Réserve la place de la piste, comme le faisait la barre native : rien ne passe dessous. */
+  html:has(.scroll-car) body {
+    margin-right: 26px;
+  }
+
+  .scroll-car {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 60;
+    display: block;
+    width: 26px;
+    cursor: pointer;
+    touch-action: none;
+    user-select: none;
+    /* Piste : asphalte translucide et ligne blanche pointillée, lisible sur fond noir comme sur fond clair */
+    background:
+      linear-gradient(rgba(140, 144, 135, 0.55) 50%, transparent 0) center / 1px 14px repeat-y,
+      rgba(7, 7, 7, 0.12);
+    border-left: 1px solid rgba(140, 144, 135, 0.25);
+  }
+
+  .scroll-car[data-empty="true"] {
+    display: none;
+  }
+
+  .scroll-car__car {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    margin-left: -10px;
+    padding: 4px 0;
+    cursor: grab;
+    filter: drop-shadow(0 2px 3px rgba(7, 7, 7, 0.45));
+    transition: filter 0.2s ease;
+  }
+
+  .scroll-car:hover .scroll-car__car {
+    filter: drop-shadow(0 0 6px rgba(255, 30, 45, 0.7));
+  }
+
+  .scroll-car[data-dragging="true"] .scroll-car__car {
+    cursor: grabbing;
+  }
+}
+
 .input-dark {
   width: 100%;
   border: 1px solid rgba(245, 243, 238, 0.14);

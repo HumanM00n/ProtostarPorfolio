@@ -15,7 +15,7 @@ export function PartnersGrid({ partners }: { partners: Partner[] }) {
         {partners.map((partner) => (
           <div
             key={partner.id}
-            className="flex min-h-[120px] flex-col justify-between border border-ink/10 bg-paper p-4 transition-colors hover:bg-white"
+            className="flex min-h-30 flex-col justify-between border border-ink/10 bg-paper p-4 transition-colors hover:bg-white"
           >
             <Lightning filled className="h-3 w-3 text-ink/20" />
             <div>
@@ -24,7 +24,7 @@ export function PartnersGrid({ partners }: { partners: Partner[] }) {
             </div>
           </div>
         ))}
-        <div className="flex min-h-[120px] flex-col justify-between border border-volt bg-volt p-4 text-ink">
+        <div className="flex min-h-30 flex-col justify-between border border-volt bg-volt p-4 text-ink">
           <Lightning filled className="h-3 w-3" />
           <div>
             <div className="font-display text-[22px] uppercase leading-none">Votre marque ?</div>

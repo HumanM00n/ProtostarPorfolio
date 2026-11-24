@@ -15,7 +15,7 @@ export function TierCard({ tier, index }: { tier: Tier; index: number }) {
       )}
     >
       {featured && (
-        <span className="label-mono absolute -top-[11px] left-5 bg-volt px-2.5 py-1 text-[8px] text-ink">Recommandé</span>
+        <span className="label-mono absolute -top-2.75 left-5 bg-volt px-2.5 py-1 text-[8px] text-ink">Recommandé</span>
       )}
       <div className="flex items-start justify-between gap-3">
         <div>
