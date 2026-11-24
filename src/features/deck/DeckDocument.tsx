@@ -1,4 +1,5 @@
 import { site } from "@/data/site";
+import { Highlight } from "@/components/ui/Highlight";
 import { telHref } from "@/lib/mailto";
 import { SmartImage } from "@/components/ui/SmartImage";
 import { ArrowUpRight, Check, Clock, Lightning, Mail, MapPin, Phone } from "@/components/ui/icons";
@@ -48,7 +49,7 @@ export function DeckDocument() {
           <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2 font-mono text-[9px] uppercase tracking-widest text-ink/45">
             <span>#{identity.number}</span>
             <span>{identity.location}</span>
-            <span>{identity.license}</span>
+            {identity.license && <span>{identity.license}</span>}
           </div>
         </header>
 
@@ -75,7 +76,7 @@ export function DeckDocument() {
               <span className="bg-ink px-1.5 py-0.5 text-volt">01</span>
               Le pilote
             </div>
-            <h3 className="mt-3 font-display text-3xl uppercase leading-[0.95]">{content.bio.heading}</h3>
+            <h3 className="mt-3 font-display text-3xl uppercase leading-[0.95]"><Highlight text={content.bio.heading} /></h3>
             <div className="mt-4 space-y-3 text-[12.5px] leading-relaxed text-ink/65">
               {content.bio.paragraphs.slice(0, 2).map((paragraph, index) => (
                 <p key={index}>{paragraph}</p>

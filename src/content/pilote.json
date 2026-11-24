@@ -1,12 +1,17 @@
 {
   "kicker": "Le pilote",
-  "heading": "La régularité avant la vitesse.",
-  "quote": "Je ne cours pas pour faire du bruit. Je cours pour faire la différence, tour après tour.",
+  "heading": "Chaque *course*, une nouvelle *leçon*.",
+  "quote": "Je veux prouver qu'avec du travail, de la persévérance et de la régularité, les moyens financiers ne font pas tout. Je veux montrer à ceux qui doutent, qui galèrent et qui pensent ne jamais y arriver qu'ils ont eux aussi leur chance. Je pars du même endroit qu'eux.",
+  "storyTitle": "Vous ne devinerez pas comment tout a commencé.",
   "paragraphs": [
-    "Tout a commencé sur un kart de location, à 11 ans. Une première session, un premier chrono, et cette évidence : je voulais comprendre pourquoi certains pilotes trouvent la trajectoire juste, encore et encore.",
-    "Depuis, le karting est devenu mon école. La compétition m'a appris à travailler mes données, à soigner ma condition physique et à garder la tête froide quand la piste se resserre. En 2025, j'ai terminé 4e du classement général en IAME Series France.",
-    "Aujourd'hui, je prépare la saison 2026 avec une ambition claire : jouer le podium national. Pour franchir ce cap, je recherche des marques partenaires qui souhaitent s'associer à une progression, pas seulement à une victoire."
+    "Tout commence devant le film F1, au cinéma, avec mon père. Deux mois plus tard, je découvre le karting lors d’une première session, avec un chrono catastrophique. *Ça me pique.* Je crée un compte sur les réseaux et ma première vidéo atteint 200 vues. Je comprends alors que le chemin sera long.",
+    "Puis je découvre qu’il n’y a pas que la F1 : il y a aussi l’endurance, les GT et les Hypercars. Je pense enfin trouver ce qui me correspond. Les premiers mois sont très difficiles, mais à force d’acharnement, je progresse rapidement.",
+    "Mon père me lance alors un défi : je pourrai découvrir de nouvelles pistes si je parviens à descendre sous les 55 secondes au tour. Je n’y arrive pas et commence à désespérer. *Jusqu’au 24/05/2026 : record battu !* Une immense fierté.",
+    "Au fil du temps, je rencontre des passionnés. Certains me donnent des conseils, d’autres m’encouragent. Deux d’entre eux deviennent bien plus que de simples amis. *Et mon père reste mon plus grand soutien.*",
+    "Ce n’est que le début d’une longue histoire. *Vous voulez en faire partie ?*"
   ],
+  "lastResult": "P5/8",
+  "lastResultDetail": "Classement “New Riders” Mens Ladies Racing au RKO",
   "facts": [
     {
       "label": "Pilote",
@@ -17,30 +22,26 @@
       "value": "17 ans"
     },
     {
-      "label": "Licence",
-      "value": "FFSA · 2026-84127"
-    },
-    {
       "label": "Basé à",
-      "value": "Lyon, France"
+      "value": "Paris, France"
     },
     {
       "label": "Karting depuis",
-      "value": "2019"
+      "value": "2025"
     }
   ],
   "values": [
     {
       "title": "Régularité",
-      "text": "Terminer les courses, ramener des points, éviter la faute qui coûte le week-end. La constance fait les classements."
+      "text": "Rouler sur un nouveau circuit, c’est déboussolant. C’est pour cela que je fais des sessions d’entraînement la veille des courses, j’étudie mes replays et les trajectoires pour préparer au mieux la course."
     },
     {
       "title": "Données",
-      "text": "Chaque session est décryptée : télémétrie, vidéo, ressenti. On ne pilote pas au hasard, on pilote avec un plan."
+      "text": "Faire part de mon ressenti, mais aussi savoir écouter celui des autres. Je n’hésite pas à demander aux meilleurs pilotes comment ils abordent certains virages. Pendant mes sessions, mon père m’accompagne également dans l’oreillette en me donnant des retours et des indications sur mes tours."
     },
     {
       "title": "Partage",
-      "text": "Un partenaire n'est pas un logo. Je documente la saison et je raconte ce que votre soutien rend possible, concrètement."
+      "text": "Je suis quelqu'un de très calculateur : j'aime anticiper, analyser et tout prévoir. Mais cela peut aussi devenir un frein. Je réfléchis trop et ne fais pas assez confiance à mon instinct. C'est ce sur quoi je travaille : développer mes réflexes, apprendre à lâcher prise et trouver le bon équilibre entre réflexion et instinct, jusqu'à ce que le pilotage devienne naturel."
     }
   ]
 }

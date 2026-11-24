@@ -40,7 +40,7 @@ export default config({
             age: text("Âge"),
             location: text("Localisation"),
             since: text("Pilote depuis (année)"),
-            license: text("Licence"),
+            license: text("Licence", "Laisser vide tant qu’il n’y a pas de licence"),
             headlineA: text("Titre — ligne 1"),
             headlineB: text("Titre — ligne 2 (en rouge)"),
             kicker: text("Sur-titre"),
@@ -67,9 +67,12 @@ export default config({
       ...json("pilote"),
       schema: {
         kicker: text("Sur-titre"),
-        heading: text("Titre"),
+        heading: text("Titre", "Entoure un mot d’astérisques pour le mettre en rouge : Chaque *course*, une nouvelle *leçon*."),
         quote: longText("Citation"),
-        paragraphs: fields.array(longText("Paragraphe"), {
+        lastResult: text("Dernier résultat", "Ex. P5/8"),
+        lastResultDetail: text("Dernier résultat : précision", "Petit texte gris sous le résultat (course, piste…)"),
+        storyTitle: text("Titre de l’histoire", "Affiché au-dessus des paragraphes (optionnel)"),
+        paragraphs: fields.array(longText("Paragraphe", "Entoure une phrase d’astérisques pour la mettre en évidence : *Vous voulez en faire partie ?*"), {
           label: "Paragraphes",
           itemLabel: (item) => item.value.slice(0, 60) || "Paragraphe",
         }),
