@@ -16,6 +16,7 @@ export function SmartImage({
   imgClassName,
   sizes = "100vw",
   priority = false,
+  position,
 }: {
   src: string;
   alt: string;
@@ -23,6 +24,8 @@ export function SmartImage({
   imgClassName?: string;
   sizes?: string;
   priority?: boolean;
+  /** Cadrage (object-position CSS), ex. "50% 80%". */
+  position?: string;
 }) {
   const [failedSrc, setFailedSrc] = useState<string | null>(null);
   const failed = failedSrc === src;
@@ -37,6 +40,7 @@ export function SmartImage({
           sizes={sizes}
           priority={priority}
           className={cn("object-cover", imgClassName)}
+          style={position ? { objectPosition: position } : undefined}
           onError={() => setFailedSrc(src)}
         />
       ) : (

@@ -11,8 +11,8 @@ const layouts = [
   "sm:col-span-2 lg:col-span-5 lg:h-[430px]",
   "lg:col-span-5 lg:h-[320px]",
   "lg:col-span-7 lg:h-[320px]",
-  "sm:col-span-2 lg:col-span-7 lg:h-[300px]",
   "lg:col-span-5 lg:h-[300px]",
+  "sm:col-span-2 lg:col-span-7 lg:h-[300px]",
 ];
 
 export function GalleryGrid({ images }: { images: GalleryItem[] }) {
@@ -32,15 +32,15 @@ export function GalleryGrid({ images }: { images: GalleryItem[] }) {
               imgClassName="grayscale-[22%] transition duration-700 group-hover:scale-[1.045] group-hover:grayscale-0"
               sizes="(min-width: 1024px) 60vw, (min-width: 640px) 50vw, 100vw"
               priority={index < 2}
+              position={image.position}
             />
             <div className="absolute inset-0 bg-linear-to-t from-ink/75 via-ink/5 to-transparent" aria-hidden="true" />
             <div className="absolute left-3.5 top-3.5 flex items-center gap-1.5 border border-paper/20 bg-ink/55 px-2.5 py-1.5 backdrop-blur">
               <Lightning filled className="h-2.5 w-2.5 text-volt" />
               <span className="label-mono text-[8px] text-paper/80">{image.tag}</span>
             </div>
-            <figcaption className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 p-4">
-              <span className="text-[13px] font-medium text-paper">{image.caption}</span>
-              <span className="label-mono shrink-0 text-[8px] text-paper/40">0{index + 1}</span>
+            <figcaption className="absolute inset-x-0 bottom-0 p-4 text-[13px] font-medium text-paper">
+              {image.caption}
             </figcaption>
           </figure>
         </Reveal>
@@ -56,12 +56,12 @@ export function GalleryGrid({ images }: { images: GalleryItem[] }) {
         </div>
         <div>
           <h2 className="font-display text-[clamp(1.9rem,3vw,2.6rem)] uppercase leading-[0.92]">
-            Votre marque
+            Votre logo
             <br />
-            sur le kart.
+            votre visibilité.
           </h2>
           <p className="mt-2 max-w-60 text-[12px] leading-relaxed text-paper/70">
-            Associez votre image à une saison, pas à un simple logo.
+            Faisons en sorte d’associer votre marque à une histoire, pas un simple logo.
           </p>
           <Link
             href="/partenaires"

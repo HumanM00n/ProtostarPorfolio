@@ -32,38 +32,49 @@ const blank = <K extends string>(...keys: K[]) => Object.fromEntries(keys.map((k
 
 const obj = <T extends object>(defaults: T, value: Partial<T> | undefined): T => ({ ...defaults, ...value });
 
+/** Photos d’illustration utilisées tant qu’aucune vraie photo n’est envoyée depuis le back-office. */
+const PLACEHOLDER_PHOTOS = {
+  portrait: "https://images.pexels.com/photos/16753309/pexels-photo-16753309.jpeg",
+  actionImage: "https://images.pexels.com/photos/11086446/pexels-photo-11086446.jpeg",
+};
+
 const list = <T extends { id: string }>(
   prefix: string,
   defaults: Omit<T, "id">,
   items: Partial<Omit<T, "id">>[] | undefined,
 ): T[] => (items ?? []).map((item, index) => ({ ...defaults, ...item, id: `${prefix}${index + 1}` }) as T);
 
+const photos = accueil.identity as { portrait?: string | null; actionImage?: string | null };
+
 export const site: SiteContent = {
-  identity: obj(
-    blank(
-      "brand",
-      "monogram",
-      "pilotName",
-      "role",
-      "number",
-      "season",
-      "age",
-      "location",
-      "since",
-      "license",
-      "headlineA",
-      "headlineB",
-      "kicker",
-      "intro",
-      "availability",
-      "portrait",
-      "actionImage",
+  identity: {
+    ...obj(
+      blank(
+        "brand",
+        "monogram",
+        "pilotName",
+        "role",
+        "number",
+        "season",
+        "age",
+        "location",
+        "since",
+        "license",
+        "headlineA",
+        "headlineB",
+        "kicker",
+        "intro",
+        "availability",
+      ),
+      accueil.identity,
     ),
-    accueil.identity,
-  ),
+    // Photos envoyées depuis le back-office (absentes ou null si aucune) → sinon photos d’illustration.
+    portrait: photos.portrait || PLACEHOLDER_PHOTOS.portrait,
+    actionImage: photos.actionImage || PLACEHOLDER_PHOTOS.actionImage,
+  },
   stats: (accueil.stats as Partial<Stat>[]).map((stat) => obj<Stat>(blank("value", "label", "detail"), stat)),
   bio: {
-    ...obj(blank("kicker", "heading", "quote", "storyTitle", "lastResult", "lastResultDetail"), pilote),
+    ...obj(blank("kicker", "heading", "quote", "storyTitle", "lastResult", "lastResultDetail", "photo"), pilote),
     paragraphs: pilote.paragraphs ?? [],
     facts: (pilote.facts as Partial<Fact>[]).map((fact) => obj<Fact>(blank("label", "value"), fact)),
     values: (pilote.values as Partial<Value>[]).map((value) => obj<Value>(blank("title", "text"), value)),
@@ -83,7 +94,7 @@ export const site: SiteContent = {
     partenaires.tiers,
   ),
   tierNote: partenaires.tierNote ?? "",
-  gallery: list<GalleryItem>("g", blank("src", "caption", "tag"), galerie.gallery),
+  gallery: list<GalleryItem>("g", blank("src", "caption", "tag", "position"), galerie.gallery),
   contact: obj(
     blank("kicker", "titleA", "titleB", "intro", "email", "phone", "city", "responseTime"),
     contact.contact,

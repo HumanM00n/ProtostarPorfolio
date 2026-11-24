@@ -45,7 +45,8 @@ export type Tier = {
   featured: boolean;
 };
 
-export type GalleryItem = { id: string; src: string; caption: string; tag: string };
+/** position : cadrage CSS de la photo (object-position), ex. "50% 80%". Vide = centré. */
+export type GalleryItem = { id: string; src: string; caption: string; tag: string; position: string };
 export type Social = { id: string; label: string; handle: string; url: string };
 
 export type SiteContent = {
@@ -76,6 +77,7 @@ export type SiteContent = {
     storyTitle: string;
     lastResult: string;
     lastResultDetail: string;
+    photo: string;
     paragraphs: string[];
     facts: Fact[];
     values: Value[];

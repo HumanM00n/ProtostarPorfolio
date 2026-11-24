@@ -14,6 +14,13 @@ export const storage = process.env.NEXT_PUBLIC_KEYSTATIC_STORAGE === "github"
 
 const text = (label: string, description?: string) => fields.text({ label, description });
 const longText = (label: string, description?: string) => fields.text({ label, description, multiline: true });
+const photo = (label: string, description: string) =>
+  fields.image({
+    label,
+    description: `${description} Laisser vide pour garder la photo d’illustration.`,
+    directory: "public/photos",
+    publicPath: "/photos/",
+  });
 const json = (name: string) => ({ path: `src/content/${name}`, format: { data: "json" as const } });
 
 export default config({
@@ -46,8 +53,8 @@ export default config({
             kicker: text("Sur-titre"),
             intro: longText("Texte d'introduction"),
             availability: text("Disponibilité"),
-            portrait: text("Photo portrait (URL)", "URL complète ou chemin /photos/xxx.jpg"),
-            actionImage: text("Photo d'action (URL)", "URL complète ou chemin /photos/xxx.jpg"),
+            portrait: photo("Photo portrait", "Accueil (à droite du titre) et dossier sponsor. Format vertical conseillé."),
+            actionImage: photo("Photo d’action", "Page Pilote (sous le titre) et page En piste. Format paysage conseillé."),
           },
           { label: "Identité" },
         ),
@@ -69,6 +76,12 @@ export default config({
         kicker: text("Sur-titre"),
         heading: text("Titre", "Entoure un mot d’astérisques pour le mettre en rouge : Chaque *course*, une nouvelle *leçon*."),
         quote: longText("Citation"),
+        photo: fields.image({
+          label: "Photo de la page",
+          description: "Sous le titre. Laisser vide pour reprendre la photo d’action (Accueil & identité).",
+          directory: "public/assets/enPiste",
+          publicPath: "/assets/enPiste/",
+        }),
         lastResult: text("Dernier résultat", "Ex. P5/8"),
         lastResultDetail: text("Dernier résultat : précision", "Petit texte gris sous le résultat (course, piste…)"),
         storyTitle: text("Titre de l’histoire", "Affiché au-dessus des paragraphes (optionnel)"),
@@ -146,6 +159,10 @@ export default config({
             src: text("Photo (URL)", "URL complète ou chemin /photos/xxx.jpg"),
             caption: text("Légende"),
             tag: text("Étiquette"),
+            position: text(
+              "Cadrage (optionnel)",
+              "Partie de la photo à garder visible : « 50% 0% » = haut, « 50% 100% » = bas, « 50% 30% » = un peu au-dessus du centre. Vide = centré.",
+            ),
           }),
           { label: "Photos", itemLabel: (item) => item.fields.caption.value || "Photo" },
         ),

@@ -1,13 +1,9 @@
 import Link from "next/link";
+import { Fragment } from "react";
 import { Highlight } from "@/components/ui/Highlight";
 import { Reveal } from "@/components/ui/Reveal";
 import { cn } from "@/lib/cn";
 
-/**
- * L'histoire du pilote, racontée comme une frise d'étapes numérotées.
- * Les phrases entre astérisques sont mises en gras. Si le dernier paragraphe en contient,
- * il clôt la frise en appel à l'action (phrase en rouge + lien vers les partenariats).
- */
 export function PilotStory({ title, paragraphs }: { title: string; paragraphs: string[] }) {
   if (paragraphs.length === 0) return null;
 
@@ -18,7 +14,7 @@ export function PilotStory({ title, paragraphs }: { title: string; paragraphs: s
       {title && (
         <Reveal>
           <div className="label-mono mb-3 flex items-center gap-3 text-[9px] text-volt">
-            <span className="h-px w-7 bg-volt" />
+            <span className="h-0.5 w-7 bg-volt"/>
             Mon histoire
           </div>
           <h2 className="font-display text-[clamp(1.7rem,2.6vw,2.2rem)] uppercase leading-[0.95]">
@@ -34,7 +30,7 @@ export function PilotStory({ title, paragraphs }: { title: string; paragraphs: s
             <li key={paragraph} className="relative">
               <span
                 className={cn(
-                  "absolute top-1 h-2.5 w-2.5 rotate-45 border-2 border-paper -left-[33px] md:-left-[41px]",
+                  "absolute top-1 h-2.5 w-2.5 rotate-45 border-2 border-paper -left-8.25 md:-left-10.25",
                   isCall ? "bg-ink" : "bg-volt",
                 )}
                 aria-hidden="true"
@@ -44,20 +40,31 @@ export function PilotStory({ title, paragraphs }: { title: string; paragraphs: s
                   {isCall ? "Et la suite ?" : String(index + 1).padStart(2, "0")}
                 </div>
                 <p className="mt-1.5 text-[15px] leading-relaxed text-ink/75">
-                  <Highlight
-                    text={paragraph}
-                    className={isCall ? "font-semibold text-volt" : "font-semibold text-ink"}
-                  />
+                  {isCall ? (
+                    // La phrase entre astérisques devient le lien vers la page Partenaires.
+                    paragraph.split(/\*([^*]+)\*/g).map((part, i) =>
+                      i % 2 === 1 ? (
+                        <Link
+                          key={i}
+                          href="/partenaires"
+                          className="group/cta inline-flex items-baseline gap-1 font-semibold text-volt underline decoration-volt/40 decoration-2 underline-offset-4 transition-colors hover:decoration-volt"
+                        >
+                          {part}
+                          <span
+                            aria-hidden="true"
+                            className="transition-transform group-hover/cta:-translate-y-0.5 group-hover/cta:translate-x-0.5"
+                          >
+                            ↗
+                          </span>
+                        </Link>
+                      ) : (
+                        <Fragment key={i}>{part}</Fragment>
+                      ),
+                    )
+                  ) : (
+                    <Highlight text={paragraph} className="font-semibold text-ink" />
+                  )}
                 </p>
-                {isCall && (
-                  <Link
-                    href="/partenaires"
-                    className="label-mono mt-3 inline-flex items-center gap-2 border-b border-ink/30 pb-1 text-[10px] text-ink transition-colors hover:border-volt hover:text-volt"
-                  >
-                    Devenir partenaire
-                    <span aria-hidden="true">↗</span>
-                  </Link>
-                )}
               </Reveal>
             </li>
           );

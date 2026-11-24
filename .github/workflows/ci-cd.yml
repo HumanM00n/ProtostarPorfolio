@@ -59,6 +59,9 @@ jobs:
       && github.event.pull_request.head.repo.full_name == github.repository
       && github.actor != 'dependabot[bot]'
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read # lecture des commits/fichiers de la PR pour le récap Discord
     environment:
       name: preview
       url: ${{ steps.deploy.outputs.url }}
@@ -85,6 +88,19 @@ jobs:
           url=$(vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }})
           echo "url=$url" >> "$GITHUB_OUTPUT"
           echo "### 🔍 Preview : $url" >> "$GITHUB_STEP_SUMMARY"
+
+      # Récap de la PR + lien de la preview sur Discord (ignoré si aucun webhook n'est configuré).
+      - name: Notifier Discord
+        continue-on-error: true # un souci Discord ne doit jamais faire échouer le déploiement
+        uses: actions/github-script@v8
+        env:
+          # Salon dédié aux previews si DISCORD_PREVIEW_WEBHOOK_URL existe, sinon salon des merges (DISCORD_PROD_WEBHOOK_URL).
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_PREVIEW_WEBHOOK_URL || secrets.DISCORD_PROD_WEBHOOK_URL }}
+          PREVIEW_URL: ${{ steps.deploy.outputs.url }}
+        with:
+          script: |
+            const notify = require("./.github/scripts/discord-pr-summary.cjs");
+            await notify({ github, context, core }, { kind: "preview", previewUrl: process.env.PREVIEW_URL });
 
   # ---------------------------------------------------------------------------
   # CD : déploiement Production sur push dans main

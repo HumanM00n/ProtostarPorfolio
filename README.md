@@ -89,8 +89,24 @@ Le déploiement automatique de Vercel via Git est désactivé dans `vercel.json`
    - `VERCEL_ORG_ID` (= `orgId`)
    - `VERCEL_PROJECT_ID` (= `projectId`)
 
-Les photos actuelles sont des images d'illustration Pexels. Pour mettre les vraies photos :
-les déposer dans `public/photos/` et remplacer l'URL par `/photos/mon-image.jpg` dans le back-office.
+### Notification Discord des PR mergées
+
+`.github/workflows/discord-pr-merged.yml` publie un résumé sur Discord à chaque PR mergée sur `main` :
+titre, description, auteur, commits, fichiers modifiés par zone et lien vers la PR
+(script : `.github/scripts/discord-pr-summary.cjs`). Les PR fermées sans merge sont ignorées.
+
+1. Discord → paramètres du salon → Intégrations → Webhooks → Nouveau webhook → copier l'URL.
+2. GitHub → Settings → Secrets and variables → Actions :
+   - secret `DISCORD_PROD_WEBHOOK_URL` (l'URL du webhook des merges) ;
+   - optionnel : variable `SITE_URL` (URL du site, affichée dans le message).
+3. Preview : à chaque PR dont la CI passe, le job « Deploy Preview » envoie aussi un récap avec le lien
+   de la preview. Même salon par défaut ; pour un salon séparé, ajouter le secret `DISCORD_PREVIEW_WEBHOOK_URL`.
+4. Pour les PR Dependabot : ajouter aussi `DISCORD_PROD_WEBHOOK_URL` dans Secrets → **Dependabot**,
+   sinon ces PR sont simplement ignorées (avertissement dans le job, pas d'échec).
+
+Photos : la photo portrait et la photo d'action s'envoient directement depuis le back-office
+(Accueil & identité → Identité → bouton « Choisir un fichier »). Elles sont enregistrées dans `public/photos/`.
+Champ vide = photo d'illustration Pexels. Les photos de la galerie restent pour l'instant des URL.
 
 ## Pages
 
