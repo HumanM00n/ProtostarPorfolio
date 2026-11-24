@@ -44,7 +44,7 @@ export function Nav({ brand, support }: { brand: string; support: { label: strin
         <div className="wrap flex h-[70px] items-center justify-between gap-5 md:h-[82px]">
           <NavLink href="/" className="flex shrink-0 items-center" aria-label={`${brand} — accueil`}>
             <Image
-              src="/logo-protostar.png"
+              src="/assets/enPiste/logo-protostar.png"
               alt={brand}
               width={640}
               height={267}
@@ -97,7 +97,7 @@ export function Nav({ brand, support }: { brand: string; support: { label: strin
       {mobileOpen && (
         <div className="grain fixed inset-0 z-[80] flex flex-col bg-ink text-paper lg:hidden">
           <div className="wrap flex h-[70px] shrink-0 items-center justify-between border-b border-paper/10">
-            <Image src="/logo-protostar.png" alt={brand} width={640} height={267} className="h-10 w-auto" />
+            <Image src="/assets/enPiste/logo-protostar.png" alt={brand} width={640} height={267} className="h-10 w-auto" />
             <button
               type="button"
               onClick={close}

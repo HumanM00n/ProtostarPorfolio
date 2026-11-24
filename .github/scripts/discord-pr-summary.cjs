@@ -1,10 +1,11 @@
-// Résumé Discord d'une PR mergée sur main.
-// Appelé par .github/workflows/discord-pr-merged.yml via actions/github-script.
+// Résumés Discord des PR, appelés via actions/github-script :
+// - "merged"  : PR mergée sur main (.github/workflows/discord-pr-merged.yml) ;
+// - "preview" : CI passée et preview Vercel déployée (job deploy-preview de ci-cd.yml).
 
 const MAX_DESCRIPTION = 1500; // Discord : 4096 max pour une description d'embed
 const MAX_FIELD = 1000; // Discord : 1024 max par champ
 const MAX_COMMITS = 10;
-const COLOR = 0xff1e2d; // rouge "volt" du site
+const COLOR = { merged: 0xff1e2d, preview: 0x3ba55d }; // rouge "volt" du site / vert
 
 const truncate = (text, max) => (text.length > max ? `${text.slice(0, max - 1).trimEnd()}…` : text);
 
@@ -16,7 +17,7 @@ const cleanBody = (body) =>
     .replace(/\n{3,}/g, "\n\n")
     .trim();
 
-function buildPayload({ pr, commits, files, siteUrl }) {
+function buildPayload({ pr, commits, files, siteUrl, kind = "merged", previewUrl }) {
   const description = truncate(cleanBody(pr.body) || "_Pas de description._", MAX_DESCRIPTION);
 
   const commitLines = commits
@@ -38,7 +39,9 @@ function buildPayload({ pr, commits, files, siteUrl }) {
 
   const fields = [
     { name: "Auteur", value: `[${pr.user.login}](${pr.user.html_url})`, inline: true },
-    { name: "Mergée par", value: pr.merged_by ? pr.merged_by.login : "—", inline: true },
+    kind === "merged"
+      ? { name: "Mergée par", value: pr.merged_by ? pr.merged_by.login : "—", inline: true }
+      : { name: "Statut", value: "CI ✅ · en attente de review", inline: true },
     {
       name: "Changements",
       value: `${pr.changed_files} fichier(s) · +${pr.additions} / −${pr.deletions}`,
@@ -49,40 +52,48 @@ function buildPayload({ pr, commits, files, siteUrl }) {
     fields.push({ name: `Commits (${commits.length})`, value: truncate(commitLines.join("\n"), MAX_FIELD) });
   }
   if (areaLines.length) fields.push({ name: "Zones touchées", value: truncate(areaLines.join("\n"), MAX_FIELD) });
-  if (siteUrl) fields.push({ name: "Site", value: siteUrl });
+  if (kind === "preview" && previewUrl) {
+    fields.unshift({ name: "🔍 Preview", value: previewUrl });
+  } else if (siteUrl) {
+    fields.push({ name: "Site", value: siteUrl });
+  }
+
+  const title =
+    kind === "preview" ? `🔍 Preview prête · PR #${pr.number} : ${pr.title}` : `✅ PR #${pr.number} mergée : ${pr.title}`;
 
   return {
     username: "Protostar · GitHub",
     allowed_mentions: { parse: [] }, // jamais de @everyone/@here déclenché par le texte d'une PR
     embeds: [
       {
-        title: truncate(`✅ PR #${pr.number} mergée : ${pr.title}`, 256),
-        url: pr.html_url,
+        title: truncate(title, 256),
+        url: kind === "preview" && previewUrl ? previewUrl : pr.html_url,
         description,
-        color: COLOR,
+        color: COLOR[kind],
         fields,
         footer: { text: `${pr.head.ref} → ${pr.base.ref}` },
-        timestamp: pr.merged_at,
+        timestamp: kind === "merged" ? pr.merged_at : new Date().toISOString(),
       },
     ],
   };
 }
 
-module.exports = async ({ github, context, core }) => {
+module.exports = async ({ github, context, core }, { kind = "merged", previewUrl } = {}) => {
   const webhook = process.env.DISCORD_WEBHOOK_URL;
   if (!webhook) {
-    core.warning("Secret DISCORD_WEBHOOK_URL absent : notification Discord ignorée.");
+    core.warning("Webhook Discord absent : notification ignorée.");
     return;
   }
 
-  const pr = context.payload.pull_request;
   const { owner, repo } = context.repo;
+  // Données fraîches de la PR (le payload d'un push ne contient pas additions/deletions à jour).
+  const { data: pr } = await github.rest.pulls.get({ owner, repo, pull_number: context.payload.pull_request.number });
   const [commits, files] = await Promise.all([
     github.paginate(github.rest.pulls.listCommits, { owner, repo, pull_number: pr.number, per_page: 100 }),
     github.paginate(github.rest.pulls.listFiles, { owner, repo, pull_number: pr.number, per_page: 100 }),
   ]);
 
-  const payload = buildPayload({ pr, commits, files, siteUrl: process.env.SITE_URL });
+  const payload = buildPayload({ pr, commits, files, siteUrl: process.env.SITE_URL, kind, previewUrl });
   const response = await fetch(webhook, {
     method: "POST",
     headers: { "Content-Type": "application/json" },

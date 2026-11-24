@@ -2,28 +2,28 @@
   "gallery": [
     {
       "src": "/assets/enPiste/en-piste.png",
-      "caption": "Last round → Tout donner",
+      "caption": "Dernière manche, tout donner jusqu’au bout",
       "tag": "Course"
     },
     {
       "src": "/assets/enPiste/sek.jpeg",
-      "caption": "Dépassement par l’extérieur en course",
+      "caption": "Dépassement par l’extérieur",
       "tag": "Bagarre",
       "position": "50% 80%"
     },
     {
       "src": "/assets/enPiste/paddock-rkc.png",
-      "caption": "En attente → Training Session",
+      "caption": "En attente de départ d’une session",
       "tag": "Paddock"
     },
     {
       "src": "/assets/enPiste/technique-aerokart.jpeg",
-      "caption": "Situational Awarness → Décisions instantanées",
+      "caption": "Gestion des imprévus et décisions rapides",
       "tag": "Technique"
     },
     {
       "src": "/assets/enPiste/me.jpeg",
-      "caption": "First Position → Session indoor",
+      "caption": "Première place en session indoor",
       "tag": "Indoor",
       "position": "50% 8%"
     }

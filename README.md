@@ -97,9 +97,11 @@ titre, description, auteur, commits, fichiers modifiés par zone et lien vers la
 
 1. Discord → paramètres du salon → Intégrations → Webhooks → Nouveau webhook → copier l'URL.
 2. GitHub → Settings → Secrets and variables → Actions :
-   - secret `DISCORD_WEBHOOK_URL` (l'URL du webhook) ;
+   - secret `DISCORD_PROD_WEBHOOK_URL` (l'URL du webhook des merges) ;
    - optionnel : variable `SITE_URL` (URL du site, affichée dans le message).
-3. Pour les PR Dependabot : ajouter aussi `DISCORD_WEBHOOK_URL` dans Secrets → **Dependabot**,
+3. Preview : à chaque PR dont la CI passe, le job « Deploy Preview » envoie aussi un récap avec le lien
+   de la preview. Même salon par défaut ; pour un salon séparé, ajouter le secret `DISCORD_PREVIEW_WEBHOOK_URL`.
+4. Pour les PR Dependabot : ajouter aussi `DISCORD_PROD_WEBHOOK_URL` dans Secrets → **Dependabot**,
    sinon ces PR sont simplement ignorées (avertissement dans le job, pas d'échec).
 
 Photos : la photo portrait et la photo d'action s'envoient directement depuis le back-office

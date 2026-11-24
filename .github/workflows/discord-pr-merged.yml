@@ -1,7 +1,7 @@
 name: Discord · PR mergée
 
 # Envoie un résumé sur Discord à chaque PR mergée sur main.
-# Nécessite le secret DISCORD_WEBHOOK_URL (Settings → Secrets and variables → Actions).
+# Nécessite le secret DISCORD_PROD_WEBHOOK_URL (Settings → Secrets and variables → Actions).
 on:
   pull_request:
     types: [closed]
@@ -26,7 +26,7 @@ jobs:
       - name: Envoyer le résumé
         uses: actions/github-script@v8
         env:
-          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_PROD_WEBHOOK_URL }}
           SITE_URL: ${{ vars.SITE_URL }}
         with:
           script: |
