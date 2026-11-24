@@ -60,7 +60,7 @@ export default function EnPistePage() {
             <div className="absolute inset-0 bg-linear-to-r from-ink via-ink/80 to-ink/20" aria-hidden="true" />
             <div className="relative z-10 flex flex-col justify-between gap-6 p-6 text-paper md:flex-row md:items-end md:p-10">
               <div>
-                <div className="label-mono text-[9px] text-volt">Le récit d&apos;une saison</div>
+                <div className="label-mono text-[9px] text-volt">Un objectif à suivre </div>
                 <p className="mt-3 max-w-xl text-xl font-medium leading-snug md:text-[28px]">{site.deck.objectives}</p>
               </div>
             </div>

@@ -1,0 +1,34 @@
+name: Discord · PR mergée
+
+# Envoie un résumé sur Discord à chaque PR mergée sur main.
+# Nécessite le secret DISCORD_WEBHOOK_URL (Settings → Secrets and variables → Actions).
+on:
+  pull_request:
+    types: [closed]
+    branches: [main]
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  notify:
+    name: Résumé Discord
+    # Uniquement les PR réellement mergées (pas les PR fermées sans merge).
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          sparse-checkout: .github/scripts
+          persist-credentials: false
+
+      - name: Envoyer le résumé
+        uses: actions/github-script@v8
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          SITE_URL: ${{ vars.SITE_URL }}
+        with:
+          script: |
+            const notify = require("./.github/scripts/discord-pr-summary.cjs");
+            await notify({ github, context, core });

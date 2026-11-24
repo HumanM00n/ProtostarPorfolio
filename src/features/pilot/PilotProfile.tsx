@@ -27,7 +27,7 @@ export function PilotProfile() {
             <Reveal delay={120} className="mt-9">
               <figure className="clip-corner relative overflow-hidden bg-ink">
                 <SmartImage
-                  src={identity.actionImage}
+                  src={bio.photo || identity.actionImage}
                   alt={`${identity.pilotName} en piste lors d'une course de karting`}
                   className="aspect-16/10 w-full md:aspect-4/3"
                   imgClassName="contrast-105 transition duration-700 hover:scale-[1.03]"
@@ -96,8 +96,8 @@ export function PilotProfile() {
             </Reveal>
 
             <Reveal delay={160} className="mt-10">
-              <div className="label-mono mb-5 flex items-center gap-3 text-ink/40">
-                <span className="h-px w-7 bg-ink/30" />
+              <div className="label-mono mb-5 flex items-center gap-3 text-[9px] text-volt">
+                <span className="h-0.5 w-7 bg-volt" />
                 Ma méthode
               </div>
               <div className="grid gap-6 sm:grid-cols-3">
