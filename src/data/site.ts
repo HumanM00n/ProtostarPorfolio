@@ -63,7 +63,7 @@ export const site: SiteContent = {
   ),
   stats: (accueil.stats as Partial<Stat>[]).map((stat) => obj<Stat>(blank("value", "label", "detail"), stat)),
   bio: {
-    ...obj(blank("kicker", "heading", "quote"), pilote),
+    ...obj(blank("kicker", "heading", "quote", "storyTitle", "lastResult", "lastResultDetail"), pilote),
     paragraphs: pilote.paragraphs ?? [],
     facts: (pilote.facts as Partial<Fact>[]).map((fact) => obj<Fact>(blank("label", "value"), fact)),
     values: (pilote.values as Partial<Value>[]).map((value) => obj<Value>(blank("title", "text"), value)),

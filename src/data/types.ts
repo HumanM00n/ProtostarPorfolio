@@ -73,6 +73,9 @@ export type SiteContent = {
     kicker: string;
     heading: string;
     quote: string;
+    storyTitle: string;
+    lastResult: string;
+    lastResultDetail: string;
     paragraphs: string[];
     facts: Fact[];
     values: Value[];
