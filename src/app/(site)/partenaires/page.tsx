@@ -33,13 +33,23 @@ export default function PartenairesPage() {
           aside={
             <>
               <p className="max-w-md text-sm leading-relaxed text-ink/65 md:text-[15px]">
-                Un partenariat karting, ce n&apos;est pas qu&apos;un autocollant. C&apos;est une association entre
-                votre entreprise et une saison de sport, de contenu et de rencontres. Voici comment on peut rouler
-                ensemble.
+              Un partenariat, c’est donner du sens à une collaboration. Je ne dispose pas encore du statut de micro-entrepreneur ni d’une association sportive, 
+              mais une alternative simple existe : le sponsoring en nature.
+
+              <br />
+              <br />
+
+              L’entreprise fournit directement au pilote du matériel ou des équipements, sans transaction monétaire. En contrepartie, 
+              le pilote s’engage à promouvoir la marque selon les modalités convenues.  
               </p>
               <div className="mt-5 flex flex-wrap gap-3">
-                <Button href="/dossier" variant="dark" className="px-4 py-3">
-                  Télécharger le dossier
+                {/* Au survol : un aplat rouge balaie le bouton de gauche à droite. */}
+                <Button
+                  href="/dossier"
+                  variant="dark"
+                  className="relative overflow-hidden px-4 py-3 before:absolute before:inset-0 before:origin-left before:scale-x-0 before:bg-volt before:transition-transform before:duration-300 before:ease-out hover:border-volt hover:shadow-[0_8px_24px_-8px_rgba(255,30,45,0.6)] hover:before:scale-x-100 hover:-translate-y-0.5 *:relative"
+                >
+                  Télécharger le dossier de sponsoring
                 </Button>
               </div>
             </>
