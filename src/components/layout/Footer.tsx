@@ -81,9 +81,17 @@ export function Footer() {
         </div>
 
         <div className="flex flex-col items-start justify-between gap-4 py-6 sm:flex-row sm:items-center">
-          <p className="label-mono text-[8px] leading-relaxed text-paper/25">
-            © {year} {identity.brand} — Tous droits réservés
-          </p>
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
+            <p className="label-mono text-[8px] leading-relaxed text-paper/25">
+              © {year} {identity.brand} — Tous droits réservés
+            </p>
+            <NavLink
+              href="/mentions-legales"
+              className="label-mono text-[8px] text-paper/35 transition-colors hover:text-volt"
+            >
+              Mentions légales & confidentialité
+            </NavLink>
+          </div>
           <div className="flex items-center gap-5">
             {instagram && (
               <a

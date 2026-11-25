@@ -320,6 +320,29 @@
   background: rgba(255, 30, 45, 0.05);
 }
 
+/*
+ * Liste déroulante : le navigateur dessine la liste ouverte avec le fond du champ.
+ * Un fond transparent donnait une liste blanche ou rosée, illisible : fond opaque et thème sombre natif.
+ */
+select.input-dark {
+  color-scheme: dark;
+  background-color: #0e0e0e;
+}
+
+select.input-dark:focus {
+  background-color: #1a0d0e;
+}
+
+select.input-dark option {
+  background-color: #0e0e0e;
+  color: #f5f3ee;
+}
+
+select.input-dark option:checked {
+  background-color: #ff1e2d;
+  color: #070707;
+}
+
 .section-dark {
   background-color: #070707;
   color: #f5f3ee;

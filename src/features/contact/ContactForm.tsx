@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { startTransition, useActionState, useEffect, useRef, useState, type FormEvent } from "react";
 import type { Tier } from "@/data/types";
 import { buildPartnershipMailto } from "@/lib/mailto";
@@ -62,7 +63,7 @@ export function ContactForm({
 
   if (state.status === "success" && state !== dismissed) {
     return (
-      <div className="flex min-h-[430px] flex-col items-start justify-center">
+      <div className="flex min-h-107.5 flex-col items-start justify-center">
         <div className="flex h-12 w-12 items-center justify-center bg-volt text-ink">
           <Check className="h-6 w-6" />
         </div>
@@ -181,7 +182,7 @@ export function ContactForm({
       <label className="block">
         <span className="label-mono mb-2 block text-[8px] text-paper/45">Votre message *</span>
         <textarea
-          className="input-dark min-h-[130px] resize-y"
+          className="input-dark min-h-32.5 resize-y"
           name="message"
           required
           minLength={CONTACT_LIMITS.message.min}
@@ -210,7 +211,10 @@ export function ContactForm({
 
       <div className="flex flex-wrap items-center justify-between gap-4 pt-1">
         <p className="max-w-xs text-[11px] leading-relaxed text-paper/35">
-          Vos informations servent uniquement à vous répondre et ne sont pas conservées sur ce site.
+          Vos informations servent uniquement à vous répondre et ne sont pas conservées sur ce site.{" "}
+          <Link href="/mentions-legales" className="underline underline-offset-2 transition-colors hover:text-paper">
+            En savoir plus
+          </Link>
         </p>
         <button
           type="submit"
