@@ -1,60 +1,50 @@
 {
-  "partners": [
-    {
-      "name": "Atelier 27",
-      "kind": "Préparation moteur"
-    },
-    {
-      "name": "Vélocité",
-      "kind": "Équipement pilote"
-    },
-    {
-      "name": "KartData",
-      "kind": "Télémétrie"
-    }
-  ],
+  "partners": [],
   "tiers": [
     {
-      "name": "Copilote",
-      "price": "500 €",
+      "name": "Pack Apex",
+      "price": "De 50€ à 100€",
       "period": "/ saison",
-      "tagline": "Le premier virage ensemble.",
+      "tagline": "L'aide qui propulse.",
       "features": [
-        "Logo sur la page partenaires",
-        "1 mention Instagram dédiée",
-        "Carte de saison dédicacée",
-        "Rapport de saison PDF"
+        "1 vidéo courte de présentation ou de remerciement du sponsor sur Instagram, TikTok et YouTube Shorts",
+        "Un bilan de fin de saison avec récapitulatif des performances"
       ],
       "featured": false
     },
     {
-      "name": "Partenaire",
-      "price": "1 500 €",
+      "name": "Pack Purple Lap",
+      "price": "De 100€ à 300€",
       "period": "/ saison",
-      "tagline": "Votre marque sur la piste.",
+      "tagline": "Un partenariat engagé.",
       "features": [
-        "Logo sur le kart et la combinaison",
-        "6 posts + 4 stories",
-        "Photos pro & droit d'usage",
-        "2 invitations en paddock",
-        "Rapport de saison détaillé"
+        "1 vidéo courte de présentation ou de remerciement du sponsor sur Instagram, TikTok et YouTube Shorts",
+        "1 intégration du sponsor dans une prochaine vidéo longue (placement de produit ou présentation de l’entreprise)",
+        "Un retour après chaque week-end de course (sur demande)",
+        "Un bilan de fin de saison avec récapitulatif des performances",
+        "Une présence sur mon site internet dans la rubrique partenaires",
+        "Une mention du sponsor sur chaque vidéo courte liée à mon projet"
       ],
       "featured": true
     },
     {
-      "name": "Écurie",
-      "price": "3 500 €",
+      "name": "Pack Protostar",
+      "price": "300€ et plus",
       "period": "/ saison",
-      "tagline": "Un projet à l'année.",
+      "tagline": "Au cœur de la performance.",
       "features": [
-        "Espace principal sur le kart",
-        "Activation sur les courses",
-        "Contenus vidéo dédiés",
-        "Journée pilote privée",
-        "Programme co-construit"
+        "1 vidéo courte de présentation ou de remerciement du sponsor sur Instagram, TikTok et YouTube Shorts",
+        "1 intégration du sponsor dans une prochaine vidéo longue (placement de produit ou présentation de l’entreprise)",
+        "Un retour après chaque week-end de course (sur demande)",
+        "Un bilan de fin de saison avec récapitulatif des performances",
+        "Une présence sur mon site internet en tant que sponsor principal, avec un lien accessible",
+        "Une mention du sponsor sur chaque vidéo, courte ou longue, liée à mon projet",
+        "1 publication photo sur l’ensemble de mes réseaux présentant l’entreprise et l’équipement fourni",
+        "Le logo du sponsor sur ma combinaison (si disponible)",
+        "Le site et le logo de l’entreprise accessibles depuis mon site internet et la bio de tous mes réseaux sociaux"
       ],
       "featured": false
     }
   ],
-  "tierNote": "Les montants couvrent l'engagement sportif, l'équipement et les déplacements. Chaque formule peut être ajustée, en visibilité comme en budget."
+  "tierNote": "Les montants indiqués sont des fourchettes de montants de soutien matériel, selon le fonctionnement du sponsoring en nature."
 }

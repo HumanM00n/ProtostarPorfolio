@@ -29,7 +29,9 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="fr" className={fontVariables}>
+    // data-scroll-behavior="smooth" : Next.js coupe le défilement fluide pendant les changements de page,
+    // sinon la remontée en haut est animée et s'arrête en cours de route (ex. sur la 2e section de l'accueil).
+    <html lang="fr" className={fontVariables} data-scroll-behavior="smooth">
       <body className="min-h-screen bg-ink">{children}</body>
     </html>
   );

@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import { site } from "@/data/site";
 import { Footer } from "./Footer";
 import { Nav } from "./Nav";
+import { ScrollCar } from "./ScrollCar";
 
 /** Habillage commun des pages publiques : lien d'évitement, navigation, contenu, pied de page. */
 export function SiteChrome({ children }: { children: ReactNode }) {
@@ -17,6 +18,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
       <Nav brand={site.identity.brand} support={site.support} />
       <main id="contenu">{children}</main>
       <Footer />
+      <ScrollCar />
     </>
   );
 }

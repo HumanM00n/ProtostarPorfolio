@@ -6,20 +6,20 @@ const proofPoints = [
   {
     icon: Gauge,
     title: "Visibilité réelle",
-    text: "Un logo sur le kart, mais aussi des contenus réguliers : photos, vidéos, stories et retours de course.",
+    text: "Votre marque mise en avant sur les réseaux, mais aussi en réel.",
     label: "Toute la saison",
   },
   {
     icon: Lightning,
-    title: "Une histoire authentique",
-    text: "Vous accompagnez une progression, pas une image figée. Le récit se construit course après course.",
-    label: "6 saisons de récit",
+    title: "Un récit qui prend vie",
+    text: "Un parcours loin de la facilité, avec des difficultés, du travail, mais aussi une histoire de progression.",
+    label: "Une histoire parlante",
   },
   {
     icon: Flag,
     title: "Une formule sur mesure",
     text: "Du coup de pouce local au partenariat principal, on ajuste la visibilité et le budget à vos objectifs.",
-    label: "Dès 500 €",
+    label: "Dès 50 €",
   },
 ];
 
