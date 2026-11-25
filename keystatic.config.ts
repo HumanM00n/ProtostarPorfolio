@@ -28,7 +28,7 @@ export default config({
   ui: {
     brand: { name: "Protostar · Back-office" },
     navigation: {
-      Pages: ["accueil", "pilote", "palmares", "galerie", "partenaires", "contact", "dossier"],
+      Pages: ["accueil", "pilote", "palmares", "galerie", "partenaires", "contact", "dossier", "legal"],
     },
   },
   singletons: {
@@ -233,6 +233,18 @@ export default config({
       schema: {
         intro: longText("Introduction du dossier"),
         objectives: longText("Objectifs de la saison"),
+      },
+    }),
+
+    legal: singleton({
+      label: "Mentions légales",
+      ...json("legal"),
+      schema: {
+        editorName: text("Éditeur du site (prénom et nom)", "Personne responsable du site et de la publication."),
+        editorEmail: text("E-mail de contact", "Pour joindre l’éditeur et exercer ses droits sur ses données."),
+        editorNote: longText("Précision sur l’éditeur", "Ex. site personnel non commercial."),
+        retention: text("Durée de conservation des messages", "Ex. « 3 ans à compter du dernier échange »."),
+        updatedAt: text("Date de mise à jour", "À changer à chaque modification de la page. Ex. « 25 novembre 2026 »."),
       },
     }),
   },
